@@ -1,0 +1,85 @@
+{
+  "search_id": "ffd9070f1b52516404db01efea9308d9",
+  "query": {
+    "q": "weather forecast",
+    "market": "en-us",
+    "count": 10,
+    "offset": 0
+  },
+  "web": {
+    "results": [
+      {
+        "title": "Las Vegas, NV Weather Forecast",
+        "url": "https://www.accuweather.com/en/us/las-vegas/89101/weather-forecast/329506",
+        "snippet": "Las Vegas, NV 77°F. Tonight 9/29 71° Lo A brief evening shower or two 55% Plenty of sunshine Night: Clear 0% Thu 10/1 93° 72° Plenty of sun Clear 0% Fri 10/2 ...",
+        "display_url": "https://www.accuweather.com/en/us/las-vegas/89101/weather-forecast/329506",
+        "hostname": "www.accuweather.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/4s65MtC1m23FZ6aXkPnB7pFVT1y_f1AdXqAtTzVT-zvbVysAY5cjb6Qt0yMGbAdAU37QY4EZFav-sbNNs46J7Q:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Weather Forecast and Conditions for Las Vegas, Nevada",
+        "url": "https://weather.com/us/nevada/city/las-vegas/today",
+        "snippet": "Today's Outlook. Tonight's low temperature will be nearly the same as last night's. 6:34 am. Sunrise. Now. 81°. 6:27 pm. Sunset. More. Storm Tracker.",
+        "display_url": "https://weather.com/us/nevada/city/las-vegas/today",
+        "hostname": "weather.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/MIBSqDBXwjka6WI1z1z56sL6NaFqOBp76_IV7viF1FANcm66EKRiQeZXEQ3Clb-e:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "First Alert Weather",
+        "url": "https://www.fox5vegas.com/weather/",
+        "snippet": "Tropical moisture is moving through the region, bringing scattered showers and thunderstorms across southern Nevada today before a noticeable mid-to-late week ...",
+        "display_url": "https://www.fox5vegas.com/weather/",
+        "hostname": "www.fox5vegas.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/ONsiPMsIdo5vGppGg2V7FmzhOqxvP0nMV19PQj7FGZ-DQPvkcvLilUww2dLR_ItuoWKa3p7EW38jHnaSimCUiQ:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "7-Day Forecast 36.17N 115.13W",
+        "url": "https://forecast.weather.gov/MapClick.php?lat=36.17193000000003&lon=-115.14000999999996",
+        "snippet": "This Afternoon: Isolated showers and thunderstorms. Mostly sunny, with a high near 84. Tonight: Mostly clear, with a low around 70. Wednesday: Sunny, with a ...",
+        "display_url": "https://forecast.weather.gov/MapClick.php?lat=36.17193000000003&lon=-115.14000999999996",
+        "hostname": "forecast.weather.gov",
+        "favicon_url": "https://s.qwant.com/v1/fav/qdTDVjKKnEBlkX9jdzsqMS3dXLUMc0nYhmKKxrNyOF5XnkwzJQZ6CUbgLl2Q_RBDzDOKvKQlNyXQOw0tqpg3_A:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Las Vegas, NV 10-Day Weather Forecast",
+        "url": "https://www.wunderground.com/forecast/us/nv/las-vegas",
+        "snippet": "Las Vegas Weather Forecasts. 79 °F Cultural Corridor. Partly Cloudy 93° | 69°F obs-icon Sunny 95° | 72°F obs-icon Sunny 97° | 73°F obs-icon Sunny 96°",
+        "display_url": "https://www.wunderground.com/forecast/us/nv/las-vegas",
+        "hostname": "www.wunderground.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/6RcK5Ul4ZAeDE34DIOZui5e3b9J0zpEB3hxrHgdCymhbL9IW3IUcxqE3ztgXjTTqb7Q85FMdQ0IGuugDulSL3w:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Las Vegas, NV - Local Weather Forecast",
+        "url": "https://www.foxweather.com/local-weather/nevada/las-vegas",
+        "snippet": "Rain showers early, then clear overnight. Low 68F. Chance of rain 60%. Tomorrow Wed Sunny skies. High 93F. Winds ENE at 5 to 10 mph.",
+        "display_url": "https://www.foxweather.com/local-weather/nevada/las-vegas",
+        "hostname": "www.foxweather.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/FTS0C5ZD5KN_1MpVjTMeIHTE0dKEGLAX0T75EHZrH6o9jM9S79TmejwyKCljdOVBrIAVZQd9x_IOdcu6cGTH2A:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Las Vegas, NV Weather Forecast, Conditions, and Maps",
+        "url": "https://weather.yahoo.com/us/nv/las-vegas/",
+        "snippet": "Thunderstorms today with a high of 80°F and a low of 71°F. There is a 90% chance of precipitation. 'Hybrid storm' may dump 8 inches of snow, forecast says.",
+        "display_url": "https://weather.yahoo.com/us/nv/las-vegas/",
+        "hostname": "weather.yahoo.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/ONsiPMsIdo5vGppGg2V7FrHLuCFNqSNKTNY7_pDbj6-rjy15q4_paoA3BSZbII3Fo1xK7FW4Bhh3s-X9xpYvNQ:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Las Vegas, NV 10-Day Weather Forecast",
+        "url": "https://www.weatherbug.com/weather-forecast/10-day-weather/las-vegas-nv-89102",
+        "snippet": "Today 82 ° F Cloudy with a slight chance of rain. Chance of precipitation 30%. High temperature around 82F. Tonight 73 ° F Mostly clear. Lows 65 to 69 on the ...",
+        "display_url": "https://www.weatherbug.com/weather-forecast/10-day-weather/las-vegas-nv-89102",
+        "hostname": "www.weatherbug.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/FTS0C5ZD5KN_1MpVjTMeIEEaOHZxgHxyS3xeLUuhH5aPN4okKC98zH-gwr_6HFEfJsL6PPOZmhXcEKsOB46lgw:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Sunny and warm weather returns Wednesday in Las Vegas",
+        "url": "https://www.youtube.com/watch?v=f4NqcmABoI8",
+        "snippet": "Sunny skies and warm temperatures return to Las Vegas Wednesday with highs reaching the low to mid 90s for the rest of the week.",
+        "display_url": "https://www.youtube.com/watch?v=f4NqcmABoI8",
+        "hostname": "www.youtube.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/9LInHSSMQLVYLj1CuTu7leipyAm4A6r0AbyoXKGWvKxR0hORLIe-btr-1Q0fpn_bezWmHfrhKQX6ZmlTjbpBag:f57b609d64291580641cf6e2ac180774"
+      }
+    ]
+  }
+}

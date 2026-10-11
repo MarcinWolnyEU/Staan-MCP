@@ -1,0 +1,133 @@
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13"]
+build-backend = "uv_build"
+
+[project]
+name = "demo-pkg"
+version = "0.2.0"
+description = "Demo package to validate the toolchain."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Marcin Wolny" }]
+requires-python = ">=3.11"
+keywords = ["mcp"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Framework :: AsyncIO",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3 :: Only",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/MarcinWolnyEU/Staan-MCP"
+Issues = "https://github.com/MarcinWolnyEU/Staan-MCP/issues"
+Changelog = "https://github.com/MarcinWolnyEU/Staan-MCP/blob/main/CHANGELOG.md"
+
+[project.scripts]
+demo-pkg = "demo_pkg:main"
+
+[dependency-groups]
+dev = [
+  { include-group = "test" },
+  { include-group = "lint" },
+  "commitizen>=4.19,<5",
+  "pre-commit>=4.6",
+]
+test = [
+  "pytest>=9.1,<10",
+  "pytest-cov>=7.1,<8",
+  "anyio>=4.15",
+  "hypothesis>=6.168",
+  "inline-snapshot>=0.35",
+  "pytest-randomly>=5",
+]
+lint = [
+  "ruff>=0.16.9,<0.17",
+  "mypy>=2.3,<3",
+  "pylint>=4.1,<5",
+  "radon>=6.0.1,<7",
+  "xenon>=0.9.3,<1",
+  "ty>=0.0.84",
+]
+mutation = ["mutmut>=3.8,<4"]
+
+[tool.uv]
+required-version = ">=0.12"
+default-groups = ["dev"]
+
+[tool.ruff]
+line-length = 100
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["COM812", "D203", "D213", "CPY001"]
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR2004", "D", "ANN", "INP001"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+files = ["src", "tests"]
+warn_unreachable = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+
+[tool.ty.environment]
+python-version = "3.11"
+
+[tool.pylint.main]
+jobs = 0
+py-version = "3.11"
+load-plugins = ["pylint.extensions.mccabe", "pylint.extensions.docparams"]
+fail-under = 10.0
+[tool.pylint."messages control"]
+disable = ["missing-module-docstring", "wrong-import-order", "ungrouped-imports"]
+enable = ["useless-suppression"]
+
+[tool.pylint.basic]
+no-docstring-rgx = "^(_|test_)"
+
+[tool.radon]
+cc_min = "B"
+exclude = "tests/*"
+
+[tool.pytest]
+minversion = "9.0"
+testpaths = ["tests"]
+log_level = "INFO"
+addopts = ["-ra", "--strict-config", "--strict-markers", "--cov", "--cov-report=term-missing"]
+xfail_strict = true
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+branch = true
+source_pkgs = ["demo_pkg"]
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+skip_covered = true
+exclude_also = ["if TYPE_CHECKING:", "@overload", "raise NotImplementedError", '^\s*\.\.\.$']
+
+[tool.mutmut]
+source_paths = ["src/"]
+pytest_add_cli_args_test_selection = ["tests/"]
+pytest_add_cli_args = ["--no-cov", "-p", "no:randomly"]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version_provider = "uv"
+tag_format = "v$version"
+update_changelog_on_bump = true
+changelog_incremental = true
+major_version_zero = true
+annotated_tag = true
+version_files = ["server.json:version"]

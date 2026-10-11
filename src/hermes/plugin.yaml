@@ -1,0 +1,15 @@
+name: staan
+version: 1.0.0
+description: Staan, the European search engine, as Hermes tools - web search and cited answers.
+author: Marcin Wolny
+license: MIT
+homepage: https://github.com/MarcinWolnyEU/Staan-MCP
+tags: [search, web-search, answers, europe]
+provides_tools:
+  - staan_web_search
+  - staan_answer
+requires_env:
+  - name: STAAN_API_KEY
+    description: Staan API key (the free plan includes 1,000 requests per month)
+    url: https://staan.ai/console/keys
+    secret: true

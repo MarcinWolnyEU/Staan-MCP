@@ -1,0 +1,39 @@
+name: Mutation testing
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  mutmut:
+    runs-on: ubuntu-latest # mutmut needs fork(); it does not run natively on Windows
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          python-version: "3.13"
+      - run: uv sync --group test --group mutation --frozen
+      - run: uv run mutmut run
+      - run: uv run mutmut export-cicd-stats
+      - name: Enforce mutation score
+        run: |
+          uv run python -c "
+          import json, sys
+          s = json.load(open('mutants/mutmut-cicd-stats.json'))
+          score = s['killed'] / max(s['total'], 1)
+          print(f'mutation score: {score:.1%}', s)
+          sys.exit(0 if score >= 0.90 else 1)
+          "
+      - if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mutants
+          path: mutants/mutmut-cicd-stats.json

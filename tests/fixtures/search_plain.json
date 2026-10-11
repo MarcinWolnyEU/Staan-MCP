@@ -1,0 +1,93 @@
+{
+  "search_id": "25c170a11e5507aef42c02a743592763",
+  "query": {
+    "q": "python asyncio tutorial",
+    "market": "fr-fr",
+    "count": 10,
+    "offset": 0
+  },
+  "web": {
+    "results": [
+      {
+        "title": "Python's asyncio: A Hands-On Walkthrough – Real Python",
+        "url": "https://realpython.com/async-io-python",
+        "snippet": "Explore how Python asyncio works and when to use it. Follow hands-on examples to build efficient programs with coroutines and awaitable tasks.",
+        "display_url": "https://realpython.com/async-io-python",
+        "hostname": "realpython.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/xdBCKT1nF0pOVr8SWU0atmg4Hu0j92crMAygnjfJpeSQKplF16p7EU1jceIoOGC_MNODewPnsWTwcTz-VlvDxA:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Python asyncio tutorial with 3 examples",
+        "url": "https://blog.apify.com/python-asyncio-tutorial",
+        "snippet": "Get better Python app performance with asyncio. Learn about coroutines, event loops, tasks, and async/await. Includes practical code examples.",
+        "display_url": "https://blog.apify.com/python-asyncio-tutorial",
+        "hostname": "blog.apify.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/xdBCKT1nF0pOVr8SWU0atlO-JXUky3HSCTPNaDMmvgrnSn8FG-zWXBQSwoi81QFNV3IZHcx4GMIV9uTLycxoLA:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Python Asyncio Tutorial: Async/Await Examples",
+        "url": "https://www.testmuai.com/blog/python-asyncio",
+        "snippet": "Python asyncio from coroutines and the event loop to working examples: async web scraping, a FastAPI service, and a concurrent URL health check you can run.",
+        "display_url": "https://www.testmuai.com/blog/python-asyncio",
+        "hostname": "www.testmuai.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/45pvPAl-7PTLpxYkcM78zDe6426zjVzzzyWvMXLx8RC0picJVJvI3m-ih7xGqfqkJpHwnDz6SJ0Cpa--ttfqfw:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "asyncio — Asynchronous I/O — Python 3.14.7 documentation",
+        "url": "https://docs.python.org/3/library/asyncio.html",
+        "snippet": "Hello World!: asyncio is a library to write concurrent code using the async/await syntax. asyncio is used as a foundation for multiple Python asynchronous frameworks that provide high-performance n...",
+        "display_url": "https://docs.python.org/3/library/asyncio.html",
+        "hostname": "docs.python.org",
+        "favicon_url": "https://s.qwant.com/v1/fav/9LInHSSMQLVYLj1CuTu7lSNho-tqXqtB6N0uHRda2ICyvzN8bHgzIEuiWIPGxniySazHxUCUhUc_plOr4LkbtA:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Python asyncio: Complete Guide to Asynchronous Programming – Kanaries",
+        "url": "https://docs.kanaries.net/topics/Python/python-asyncio",
+        "snippet": "Master Python asyncio with practical examples covering async/await, tasks, gather, event loops, aiohttp, concurrent execution, and real-world async patterns.",
+        "display_url": "https://docs.kanaries.net/topics/Python/python-asyncio",
+        "hostname": "docs.kanaries.net",
+        "favicon_url": "https://s.qwant.com/v1/fav/ONsiPMsIdo5vGppGg2V7FvWmjNRFVDpbFDdHDN_N8gXV7bL9bFIaid63C3yZ0UH1u2qhk_meqNYgDK5j0hlwYQ:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Introduction to Asynchronous Programming with Python’s Asyncio – datanovia",
+        "url": "https://www.datanovia.com/learn/programming/python/advanced/asyncio.html",
+        "snippet": "Learn the basics of asynchronous programming in Python using the asyncio module, including how to write async/await code and practical examples of asynchronous I/O.",
+        "display_url": "https://www.datanovia.com/learn/programming/python/advanced/asyncio.html",
+        "hostname": "www.datanovia.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/ONsiPMsIdo5vGppGg2V7FrfFXidDrnfgG4tNyn0KnTH0ZGHsqxFG8mFtFXewpIcBbu223S006fTZqF03_LoBRg:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Master asyncio in Python: A Comprehensive Step-by-Step Guide | by Arun Suresh Kumar | PythonIQ | Medium",
+        "url": "https://medium.com/pythoniq/master-asyncio-in-python-a-comprehensive-step-by-step-guide-4fc2cfa49925",
+        "snippet": "Unlock the power of asynchronous programming in Python with this in-depth tutorial on asyncio. Master coroutines, tasks, event loops, networking, and best practices to create scalable and efficient applications that stand out in the world of...",
+        "display_url": "https://medium.com/pythoniq/master-asyncio-in-python-a-comprehensive-step-by-step-guide-4fc2cfa49925",
+        "hostname": "medium.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/EY3lGlWpeXu7qHOy9V7clTYNOR0HYu8EvjKX1GSCsOTVXlSu_ka33ADBSScIhDMD:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Asyncio Python Tutorial: Unleashing the Power of Asynchronous Programming - CodeRivers",
+        "url": "https://coderivers.org/blog/asyncio-python-tutorial",
+        "snippet": "In the world of Python programming, asynchronous programming has become an essential skill, especially when dealing with I/O-bound operations such as network requests, file reads, and database queries. `asyncio` is a powerful library in Python...",
+        "display_url": "https://coderivers.org/blog/asyncio-python-tutorial",
+        "hostname": "coderivers.org",
+        "favicon_url": "https://s.qwant.com/v1/fav/xdBCKT1nF0pOVr8SWU0attGD63gTtvkAc7yS0wg7FMNoadg6w5yAvxn3__OeWaIHCevFHHWLYN6zxUs-aIwSAQ:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "Mastering Python’s Asyncio: A Practical Guide | by Moraneus | Medium",
+        "url": "https://medium.com/%40moraneus/mastering-pythons-asyncio-a-practical-guide-0a673265cf04",
+        "snippet": "Mastering Python’s Asyncio: A Practical Guide When you dive into Python’s world, one gem that truly shines for handling modern web and network tasks is asyncio. This toolkit is Python's answer to …",
+        "display_url": "https://medium.com/%40moraneus/mastering-pythons-asyncio-a-practical-guide-0a673265cf04",
+        "hostname": "medium.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/EY3lGlWpeXu7qHOy9V7clTYNOR0HYu8EvjKX1GSCsOTVXlSu_ka33ADBSScIhDMD:f57b609d64291580641cf6e2ac180774"
+      },
+      {
+        "title": "asyncio in Python - GeeksforGeeks",
+        "url": "https://www.geeksforgeeks.org/python/asyncio-in-python",
+        "snippet": "Your All-in-One Learning Portal. It contains well written, well thought and well explained computer science and programming articles, quizzes and practice/competitive programming/company interview Questions.",
+        "display_url": "https://www.geeksforgeeks.org/python/asyncio-in-python",
+        "hostname": "www.geeksforgeeks.org",
+        "favicon_url": "https://s.qwant.com/v1/fav/d1_O0463srbl4CJQZxlGfOlpbf2IQg3sna_k74k6KTNDrwCe5-Rs1fFSDYVnGYU0Rw4xy6ql0NLrkhB2vLqP1w:f57b609d64291580641cf6e2ac180774"
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "search_id": "9018ac91832f3754b6058f030986fa14",
+  "query": {
+    "q": "python programming",
+    "market": "en-gb",
+    "count": 10,
+    "offset": 0
+  },
+  "web": {
+    "results": [
+      {
+        "title": "Welcome to Python.org",
+        "url": "https://www.python.org/",
+        "snippet": "Get Started. Whether you're new to programming or an experienced developer, it's easy to learn and use Python. · Download. Python source code and installers are ...",
+        "display_url": "https://www.python.org/",
+        "hostname": "www.python.org",
+        "favicon_url": "https://s.qwant.com/v1/fav/66IZqCP4iAGwtFQPCINGoIlY7zcklDejOUn9ORq-PXe02ewxw6vACaGXYTJ5wyyk:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "Whether you're new to programming or an experienced developer, it's easy to learn and use Python.\n\nPython source code and installers are available for download for all versions!\n\nLatest: Python 3.14.6\n\nDocumentation for Python's standard library, along with tutorials and guides, are available online.\n\nLooking for work or have a Python related position that you're trying to hire for? Our **relaunched community-run job board** is the place to go.\n\n- **Web Development**: Django, Pyramid, Bottle, Tornado, Flask, Litestar, FastAPI\n- **GUI Development**: tkInter, PyGObject, PyQt, PySide, Kivy,",
+          "format": "markdown",
+          "length": 1113
+        },
+        "published_date": "2026-06-29T00:00:00Z"
+      },
+      {
+        "title": "Python (programming language)",
+        "url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+        "snippet": "Python is a high-level, general-purpose programming language that emphasizes code readability, simplicity, and ease-of-writing with the use of significant ...",
+        "display_url": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+        "hostname": "en.wikipedia.org",
+        "favicon_url": "https://s.qwant.com/v1/fav/7sTbOFcs7HDCAg1gklmTrD3cbfgk_BKm4RkSTepbmHu1tVIV_bMVvFbUneMV4dfVsxKgak0IZcrpgNjdFKnWVQ:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "|     |\n| --- |\n| This article <br>**may contain unverified or indiscriminate information** in embedded lists. _(October 2025)_ |\n\n| This article is part of a series on |\n| Python |\n\n**Python** is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.\\[34\\] Python is dynamically type-checked and garbage-collected. It supports multiple programming paradigms, including structured (particularly procedural), object-oriented and functional programming.\n\nGuido van Rossum began working on Python in the late 1980s",
+          "format": "markdown",
+          "length": 73725
+        },
+        "published_date": "2001-10-29T00:00:00Z"
+      },
+      {
+        "title": "Learn Python: Programming Tutorials for Beginners",
+        "url": "https://www.programiz.com/python-programming",
+        "snippet": "Python is a powerful general-purpose programming language. Our Python tutorial will guide you to learn Python one step at a time with the help of examples.",
+        "display_url": "https://www.programiz.com/python-programming",
+        "hostname": "www.programiz.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/ONsiPMsIdo5vGppGg2V7FszcLUfFejTq2ijRIgkDK9Wd5_RYc0KJurJKViZcuMby_yrSlzwBCdqVTe9psfb7YQ:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "Python is a popular general purpose programming language created by Guido van Rossum in 1991. The language has significantly evolved since then, and the current version is 3.14. Today, Python is used in wide range of applications including artificial intelligence, web development and automation.\n\nFrom a beginner's perspective, it's one of the easiest languages to learn because its syntax has less boiler plate and reads like English in many cases.\n\nThis is a comprehensive guide on how to get started with Python, why you should learn it, and how you can learn it. If you're just looking for",
+          "format": "markdown",
+          "length": 3348
+        }
+      },
+      {
+        "title": "Python - Coding: a Practical Guide - Subject Guides",
+        "url": "https://subjectguides.york.ac.uk/coding/python",
+        "snippet": "Python is a coding language used for a wide range of things, including working with data, building systems and software, and even creating games ...",
+        "display_url": "https://subjectguides.york.ac.uk/coding/python",
+        "hostname": "subjectguides.york.ac.uk",
+        "favicon_url": "https://s.qwant.com/v1/fav/NPMmANqz63YY1lLiS04ZYxEny1xVG0O8xGSBiZPjYv8oSIZP-wSSvpWbgH3of27G1NdwxjtbxkQ3KZhbCXNCvA:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "Python is a useful, general purpose coding language that can be used for a range of things, including working with data, machine learning, and creating software.\n\n**Python** is a coding language used for a wide range of things, including working with data, building systems and software, and even creating games. It's a good place for beginners to start because there are a lot of resources out there for learning Python and there's lots of different directions you can take it.\n\nIt might be that your course or job requires you to know some Python, as it's commonly used for research and in a range",
+          "format": "markdown",
+          "length": 19195
+        },
+        "published_date": "2020-10-26T00:00:00Z"
+      },
+      {
+        "title": "Python Full Course for Beginners",
+        "url": "https://www.youtube.com/watch?v=K5KVEU3aaeQ",
+        "snippet": "In this course you're going to learn everything about python from Basics to more advanced concepts.",
+        "display_url": "https://www.youtube.com/watch?v=K5KVEU3aaeQ",
+        "hostname": "www.youtube.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/9LInHSSMQLVYLj1CuTu7leipyAm4A6r0AbyoXKGWvKxR0hORLIe-btr-1Q0fpn_bezWmHfrhKQX6ZmlTjbpBag:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "",
+          "format": "markdown",
+          "length": 0
+        }
+      },
+      {
+        "title": "Introduction to Python",
+        "url": "https://www.w3schools.com/python/python_intro.asp",
+        "snippet": "Python has syntax that allows developers to write programs with fewer lines than some other programming languages. Python runs on an interpreter system, meaning ...",
+        "display_url": "https://www.w3schools.com/python/python_intro.asp",
+        "hostname": "www.w3schools.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/ONsiPMsIdo5vGppGg2V7FtThPpU5pFJdsGsonjt6EtUJXZ3kH4L8Q4pL0YRQ7L8QFggBdJuw3HJSY0VQP8HP7Q:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "# Python Introduction\n\n## What is Python?\n\nPython is a popular programming language. It was created by Guido van Rossum, and released in 1991.\n\nIt is used for:\n\n- web development (server-side),\n- software development,\n- mathematics,\n- system scripting.\n\n### What can Python do?\n\n- Python can be used on a server to create web applications.\n- Python can be used alongside software to create workflows.\n- Python can connect to database systems. It can also read and modify files.\n- Python can be used to handle big data and perform complex mathematics.\n- Python can be used for rapid prototyping, or",
+          "format": "markdown",
+          "length": 2071
+        }
+      },
+      {
+        "title": "Best Python Courses + Tutorials",
+        "url": "https://www.codecademy.com/catalog/language/python",
+        "snippet": "Learn Python programming with AI tools. This course takes you from fundamentals to best practices using Codex CLI for serious development.",
+        "display_url": "https://www.codecademy.com/catalog/language/python",
+        "hostname": "www.codecademy.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/FTS0C5ZD5KN_1MpVjTMeIFCFtu2A_Gwzp1W3Qxq1ZXMcIydt7Mg8k2zOUDQQ6D8wEdGAYEpWM8ml_qIUrtbKSQ:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "# Python courses\n\n## About Python\n\nPython is a general-purpose, versatile, and powerful programming language. It's a great first language because Python code is concise and easy to read. Whatever you want to do, python can do it. From web development to machine learning to data science, Python is the language for you.\n\n## Python courses\n\n**Filters** 132 results\n\n### Level\n\n### Price\n\nView plans\n\n### Type\n\n### Average time to complete\n\nAverage based on combined completion rates — individual pacing in lessons, projects, and quizzes may vary.\n\nMost relevant\n\n132 results\n\nMost relevant",
+          "format": "markdown",
+          "length": 588
+        }
+      },
+      {
+        "title": "What Is Python Used For? A Beginner's Guide",
+        "url": "https://www.coursera.org/gb/articles/what-is-python-used-for-a-beginners-guide-to-using-python",
+        "snippet": "Python is a computer programming language often used to build websites and software, automate tasks, and analyze data. Python is a general- ...",
+        "display_url": "https://www.coursera.org/gb/articles/what-is-python-used-for-a-beginners-guide-to-using-python",
+        "hostname": "www.coursera.org",
+        "favicon_url": "https://s.qwant.com/v1/fav/nV3xzwuZ-AebCJSH3g5hX8Xqg3Xw9IgrwCm4WtL28qQzoPrB7-T29sMxlCALe3Isga-PbWAFd_CsIZObV6AWgg:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "Python has become one of the most popular programming languages in the world in recent years. It's used in everything from machine learning to building websites and software testing. It can be used by developers and non-developers alike.\n\nPython, one of the most popular programming languages in the world, has created everything from Netflix’s recommendation algorithm to the software that controls self-driving cars. As many government departments in the UK increase efforts to expand their digital economy, professionals with skills in software development and computer programming are in high",
+          "format": "markdown",
+          "length": 9211
+        },
+        "published_date": "2023-08-30T00:00:00Z"
+      },
+      {
+        "title": "Learn Python for Beginners: Interactive Course",
+        "url": "https://www.boot.dev/courses/learn-python-beginners",
+        "snippet": "Learn Python by writing real code. Practice variables, functions, loops, data structures, and problem solving in an interactive course. Start free.",
+        "display_url": "https://www.boot.dev/courses/learn-python-beginners",
+        "hostname": "www.boot.dev",
+        "favicon_url": "https://s.qwant.com/v1/fav/9DfNxu1IEJIVVe9U3kEmteVB19Rq3Ey78cpxymIqtYD-yEgR3mBNBz-SS-03bVjEjJyIdpSvsOxZ_jqle7Abjw:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "30 Hours\n\nof content\n\n168 Addicting\n\nlessons\n\nEarn a certificate\n\nof completion\n\nLearn online\n\nat your pace\n\nLearn Python from scratch by writing code, not just watching videos. This course is built for complete beginners, so you don't need any prior programming experience. Every lesson runs in your browser, and XP, streaks, and quests keep you coming back.\n\nShowing 1-9 of 5467\n\nAvoid tutorial hell\n\nby writing a ton of code\n\nStay motivated with\n\na game-like curriculum\n\nBuild portfolio projects\n\nto prove your skills\n\nDelve deeper\n\ninto foundational concepts\n\nLearn flexibly online\n\nwithout",
+          "format": "markdown",
+          "length": 888
+        },
+        "published_date": "2026-09-23T00:00:00Z"
+      },
+      {
+        "title": "Google's Python Class | Python Education",
+        "url": "https://developers.google.com/edu/python",
+        "snippet": "Welcome to Google's Python Class -- this is a free class for people with a little bit of programming experience who want to learn Python.",
+        "display_url": "https://developers.google.com/edu/python",
+        "hostname": "developers.google.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/-LCKkT7xZ6vNWHwuLeRUBr-1XZzTqcACPpIlI5YSbO68eKhKUddasWBY9yYHx4cwmhDulJHNPfymSwdYAhmjPA:f57b609d64291580641cf6e2ac180774",
+        "full_content": {
+          "text": "Bienvenue dans le course Python de Google. Il s'agit d'un course sans frais destiné aux personnes ayant un peu d'expérience en programmation et qui souhaitent apprendre à utiliser Python. Le course comprend des documents écrits, des course vidéo et de nombreux exercices de codage pour s'entraîner au codage Python. Ces documents sont utilisés au sein de Google pour présenter Python aux personnes ayant un peu d'expérience en programmation. Les premiers exercices portent sure les concepts de base de Python, tels que les chaînes et les listed. Les prochains exercices sont des programmes completes",
+          "format": "markdown",
+          "length": 2209
+        }
+      }
+    ]
+  }
+}

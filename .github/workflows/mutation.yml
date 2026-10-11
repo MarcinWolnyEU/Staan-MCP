@@ -1,0 +1,68 @@
+name: Mutation testing
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      min-score:
+        description: Minimum mutation score (0 to 1) required to pass
+        required: false
+        default: "0.90"
+
+permissions: {}
+
+concurrency:
+  group: mutation-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  UV_FROZEN: "1"
+
+jobs:
+  mutmut:
+    name: mutmut
+    runs-on: ubuntu-latest # mutmut needs fork(); it does not run natively on Windows
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    env:
+      UV_NO_SYNC: "1" # keep the environment from the explicit `uv sync` (no default `dev` group)
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.21"
+          python-version: "3.13"
+      - run: uv sync --no-default-groups --group test --group mutation
+      - run: uv run mutmut run
+      - run: uv run mutmut export-cicd-stats
+      - name: Enforce the mutation score
+        env:
+          MIN_SCORE: ${{ inputs.min-score || '0.90' }}
+        run: |
+          uv run python - <<'PY'
+          import json
+          import os
+          import pathlib
+          import sys
+
+          stats = json.loads(pathlib.Path("mutants/mutmut-cicd-stats.json").read_text())
+          considered = stats["total"] - stats.get("skipped", 0)
+          detected = stats["killed"] + stats.get("timeout", 0)
+          score = detected / considered if considered else 1.0
+          minimum = float(os.environ["MIN_SCORE"])
+          line = f"mutation score {score:.1%} (minimum {minimum:.0%}): {stats}"
+          print(line)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+              summary.write(f"### Mutation testing\n\n{line}\n")
+          sys.exit(0 if score >= minimum else 1)
+          PY
+      - if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: mutants
+          path: mutants/mutmut-cicd-stats.json
+          if-no-files-found: ignore

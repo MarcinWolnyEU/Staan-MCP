@@ -1,0 +1,22 @@
+name: Question
+description: How to use the server, what a result or setting means, or whether it suits your case.
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        First check the README and the other files in the repository. An LLM that has a cloned copy of the repository can often answer too. Still can't find the answer? Ask here.
+        Questions about your Staan account, keys or quotas belong with Staan.
+        Never paste your API key, an access token or an `Authorization` header.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What you're trying to do, and what you've tried. Include the client configuration or tool call if it helps (without your key).

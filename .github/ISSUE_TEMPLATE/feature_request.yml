@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest an improvement or a new capability.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to do that staan-mcp makes hard or impossible today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How should it work? Include example tool arguments or CLI flags if you can.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: upstream
+    attributes:
+      label: Does it need a Staan API capability that is not exposed yet?
+      description: The server only wraps what the Staan API offers.
+      options:
+        - "No, it is purely server-side"
+        - "Yes, the Staan API already supports it"
+        - "Not sure"
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched the existing issues and the changelog.
+          required: true

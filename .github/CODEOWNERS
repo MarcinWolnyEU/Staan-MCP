@@ -1,0 +1,9 @@
+# Every file needs a review from the maintainer.
+* @MarcinWolnyEU
+
+# Workflows, release and supply-chain configuration.
+/.github/ @MarcinWolnyEU
+/Dockerfile @MarcinWolnyEU
+/server.json @MarcinWolnyEU
+/pyproject.toml @MarcinWolnyEU
+/uv.lock @MarcinWolnyEU

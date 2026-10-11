@@ -1,0 +1,82 @@
+name: Bug report
+description: The server crashed, returned a wrong result, or behaved differently from the README.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check the README's Troubleshooting section first.
+        Problems with your Staan account (keys, quotas, `answer` being invitation-only or disabled) belong with Staan, not here.
+        Security problems go to [a private advisory](https://github.com/MarcinWolnyEU/Staan-MCP/security/advisories/new), not here.
+        **Never paste your API key, an access token or an `Authorization` header.** Remove them from configs and logs first.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `staan-mcp --version`, `python staan-mcp-stdio.pyz --version` (prints `staan-stdio X.Y.Z`) or the image tag.
+      placeholder: staan-mcp 1.0.0
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How you run it
+      options:
+        - uvx staan-mcp
+        - pip install staan-mcp
+        - Single-file bundle (staan-mcp-stdio.pyz)
+        - Checkout (python src/staan_mcp/stdio_server.py)
+        - Docker
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: transport
+    attributes:
+      label: Transport
+      options:
+        - stdio
+        - http
+        - stateless
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Python and operating system
+      description: Output of `python --version`, plus your OS. Not needed for Docker.
+      placeholder: Python 3.13.1, Windows 11
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: MCP client
+      description: The client or harness that calls the server, with its version if you know it.
+      placeholder: Claude Desktop 1.2.3
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you expected, and what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The tool name and arguments you sent, and any non-default flags or `STAAN_*` environment variables. Do not include your key.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: The server's stderr, ideally with `--log-level DEBUG`. Remove anything private first.
+      render: text
+    validations:
+      required: false

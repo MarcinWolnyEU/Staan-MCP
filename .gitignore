@@ -1,0 +1,47 @@
+# Secrets: API keys live in local text files and must never be committed.
+*key*.txt
+testing*.txt
+.env
+.env.*
+*.pem
+*.key
+credentials*
+
+# Scratch work and research artefacts
+.tmp/
+
+# Mutation testing
+mutants/
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.pylint.d/
+.uv-cache/
+
+# Build output
+dist/
+dist-bundle/
+build/
+*.egg-info/
+.eggs/
+
+# Coverage
+.coverage*
+coverage.xml
+htmlcov/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# AI
+.pi/

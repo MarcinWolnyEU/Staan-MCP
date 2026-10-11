@@ -1,0 +1,276 @@
+name: Release
+
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+*"]
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  UV_FROZEN: "1"
+
+jobs:
+  # The full CI workflow (lint, tests on every OS and Python, lowest-direct, hooks, build,
+  # Docker) runs on the tagged commit first. Nothing is built for release unless it passes.
+  ci:
+    name: CI on the tagged commit
+    # The `$/` self-repository form (zizmor self-repository) is not understood by actionlint
+    # 1.7.12 yet; switch once it is.
+    uses: ./.github/workflows/ci.yml # zizmor: ignore[self-repository]
+    with:
+      release: true
+    # A called workflow gets at most the caller's permissions, and ci.yml's codecov job declares
+    # id-token: write (it is skipped here through `release: true`, but the declaration counts).
+    permissions:
+      contents: read
+      id-token: write # ceiling for the called codecov job (skipped here)
+
+  # Everything that runs third-party code (build backend, checkers, uv) has no token to steal:
+  # this job only reads the repository. Signing happens in the separate `attest` job, which
+  # downloads the finished files and runs no project or tool code.
+  build:
+    name: Build, verify and SBOM
+    needs: ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      prerelease: ${{ steps.version.outputs.prerelease }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # full history, to check the tag against main
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.21"
+          python-version: "3.13"
+          enable-cache: false # never restore caches in a release job (cache poisoning)
+      - name: Check the tagged commit is on main
+        env:
+          TAG_SHA: ${{ github.sha }}
+        run: |
+          git merge-base --is-ancestor "${TAG_SHA}" origin/main \
+            || { echo "::error::the tagged commit is not reachable from main"; exit 1; }
+      - name: Check tag, pyproject version and server.json agree
+        id: version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version="$(uv version --short)"
+          test "v${version}" = "${TAG}" || { echo "tag ${TAG} != project version ${version}"; exit 1; }
+          jq -e --arg v "${version}" '.version == $v and (.packages | all(.version == $v))' server.json
+          # uv prints the PEP 440 normalised form (what `cz bump --prerelease` writes): a
+          # pre-release is aN, bN or rcN, and a development release is .devN.
+          prerelease_re='(a|b|rc)[0-9]+|\.dev[0-9]+'
+          if [[ "${version}" =~ ${prerelease_re} ]]; then prerelease=true; else prerelease=false; fi
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+          echo "prerelease=${prerelease}" >> "${GITHUB_OUTPUT}"
+      - run: uv build --no-sources
+      # twine and check-wheel-contents come from the lock file (hash-pinned), not from `uvx`.
+      - run: uv run --only-group dist twine check --strict dist/*
+      - run: uv run --only-group dist check-wheel-contents dist/*.whl
+      - name: Smoke-test the built wheel in a clean environment
+        run: uv run --isolated --no-project --with dist/*.whl staan-mcp --version
+      # The single-file stdio bundle is built from the tagged sources with the standard library
+      # only (no project environment), and goes to `dist-bundle/`, not `dist/`: PyPI and twine
+      # accept only wheels and sdists. A second build must be byte-identical (reproducible).
+      - name: Build the single-file stdio bundle and check that the build is reproducible
+        run: |
+          uv run --no-project python scripts/build_zipapp.py dist-bundle/staan-mcp-stdio.pyz
+          uv run --no-project python scripts/build_zipapp.py "${RUNNER_TEMP}/staan-mcp-stdio.again.pyz"
+          cmp dist-bundle/staan-mcp-stdio.pyz "${RUNNER_TEMP}/staan-mcp-stdio.again.pyz"
+      # Bare interpreter (-I -S: no site-packages), started away from the checkout, as a user
+      # runs it: it must report the release version and answer an MCP handshake.
+      - name: Smoke-test the bundle on a bare interpreter
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          bundle="${PWD}/dist-bundle/staan-mcp-stdio.pyz"
+          cd "${RUNNER_TEMP}"
+          test "$(uv run --no-project python -I -S "${bundle}" --version)" = "staan-stdio ${VERSION}"
+          printf '%s\n' \
+            '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"smoke","version":"0"}}}' \
+            '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+            '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+            | uv run --no-project python -I -S "${bundle}" \
+            | jq -e --slurp --arg v "${VERSION}" \
+              '.[0].result.serverInfo.version == $v and ([.[1].result.tools[].name] == ["web_search", "answer"])'
+      - name: Generate CycloneDX SBOM from the lockfile
+        run: uv export --frozen --no-dev --no-emit-project --format cyclonedx1.5 --preview-features sbom-export --output-file dist-sbom.cdx.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dist
+          path: |
+            dist/
+            dist-bundle/
+            dist-sbom.cdx.json
+
+  attest:
+    name: Attest build provenance and SBOM
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write # sigstore signing for attestations
+      attestations: write # store the build provenance and SBOM attestations
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+      # The bundle is attested next to the wheel and sdist. The SBOM below stays bound to those
+      # two only: it lists the locked runtime dependencies, which the bundle does not contain.
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: |
+            dist/*
+            dist-bundle/*
+      # Binds the CycloneDX SBOM to the wheel and sdist digests (signed, verifiable with
+      # `gh attestation verify --predicate-type https://cyclonedx.org/bom`).
+      - uses: actions/attest-sbom@c604332985a26aa8cf1bdc465b92731239ec6b9e # v4.1.0
+        with:
+          subject-path: dist/*
+          sbom-path: dist-sbom.cdx.json
+
+  publish-pypi:
+    name: Publish to PyPI (Trusted Publishing)
+    needs: [build, attest]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: pypi
+      url: https://pypi.org/project/staan-mcp/
+    permissions:
+      id-token: write # required for Trusted Publishing and PEP 740 attestations
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+        with:
+          packages-dir: dist/
+          print-hash: true
+
+  github-release:
+    name: GitHub release
+    needs: [build, publish-pypi]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write # create the GitHub release and upload its assets
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+      - name: Create release with assets in one call (works with immutable releases)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+          PRERELEASE: ${{ needs.build.outputs.prerelease }}
+        run: |
+          flags=()
+          if [ "${PRERELEASE}" = "true" ]; then flags+=(--prerelease); fi
+          gh release create "${TAG}" dist/* dist-bundle/* dist-sbom.cdx.json --verify-tag --generate-notes \
+            --title "${TAG}" "${flags[@]}"
+
+  publish-docker:
+    name: Publish the container image to GHCR
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    timeout-minutes: 45 # two platforms, arm64 under QEMU
+    permissions:
+      contents: read
+      packages: write # push to ghcr.io
+      id-token: write # sigstore signing for the attestation
+      attestations: write # store the image provenance attestation
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      # The tags are PEP 440 versions (v0.2.0, v0.2.0rc0), not semver. `type=pep440` gives a
+      # release X.Y.Z, X.Y and `latest` (flavor latest=auto), and a pre-release gets only its own
+      # version, so it never becomes `latest`.
+      - id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        with:
+          images: ghcr.io/marcinwolnyeu/staan-mcp
+          flavor: latest=auto
+          tags: |
+            type=pep440,pattern={{version}}
+            type=pep440,pattern={{major}}.{{minor}}
+      - id: push
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          provenance: mode=max
+          sbom: true
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ghcr.io/marcinwolnyeu/staan-mcp
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
+
+  # Pre-releases are not published to the MCP Registry: it would list them as the latest version.
+  publish-mcp-registry:
+    name: Publish to the MCP Registry
+    needs: [build, publish-pypi]
+    if: needs.build.outputs.prerelease != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write # GitHub OIDC login to the registry
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # The SHA-256 is pinned here, not read from the release's own checksum file, so a replaced
+      # release asset is rejected. It was taken from a download whose sigstore bundle verified
+      # against modelcontextprotocol/registry at refs/tags/v1.8.1. Update both values together.
+      - name: Install mcp-publisher (pinned version and checksum)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISHER_VERSION: v1.8.1
+          PUBLISHER_SHA256: a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc
+        run: |
+          gh release download "${PUBLISHER_VERSION}" --repo modelcontextprotocol/registry \
+            --pattern "mcp-publisher_linux_amd64.tar.gz"
+          echo "${PUBLISHER_SHA256}  mcp-publisher_linux_amd64.tar.gz" | sha256sum --check -
+          tar xzf mcp-publisher_linux_amd64.tar.gz mcp-publisher
+      # The registry validates the package against PyPI (the `mcp-name:` line in the
+      # description), and PyPI's JSON API can lag a fresh upload behind its CDN.
+      - name: Wait until PyPI serves the new version
+        env:
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          for attempt in $(seq 1 20); do
+            if curl --fail --silent --show-error --output /dev/null \
+                "https://pypi.org/pypi/staan-mcp/${VERSION}/json"; then
+              exit 0
+            fi
+            echo "attempt ${attempt}: PyPI does not serve staan-mcp ${VERSION} yet"
+            sleep 15
+          done
+          echo "::error::PyPI did not serve staan-mcp ${VERSION} within 5 minutes"
+          exit 1
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish

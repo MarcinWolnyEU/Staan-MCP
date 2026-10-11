@@ -1,0 +1,16 @@
+# gitleaks configuration (the pre-commit hook and the CI history scan both read this file).
+title = "staan-mcp"
+
+[extend]
+useDefault = true
+
+# The tests use one made-up API key. It is not a credential for anything, but the default
+# `generic-api-key` rule flags it (it looks like `key = "<random-looking text>"`), and the
+# findings are in the history (commit eb487be), which cannot be rewritten.
+# The allowlist matches only that exact value, only for that rule: a different key in a test, or
+# any other rule, is still reported.
+[[allowlists]]
+description = "the fake API key the tests share"
+targetRules = ["generic-api-key"]
+regexTarget = "secret"
+regexes = ['''^test-key-0123456789$''']

@@ -1,0 +1,219 @@
+{
+  "search_id": "0d920ee2fc05ffd5fc834ba3ed346b02",
+  "query": {
+    "q": "open source llms",
+    "market": "en-gb",
+    "count": 10,
+    "offset": 0
+  },
+  "web": {
+    "results": [
+      {
+        "title": "Top 7 open source LLMs for 2026",
+        "url": "https://www.instaclustr.com/education/open-source-ai/top-7-open-source-llms-for-2026/",
+        "snippet": "Top open source LLMs in 2026 · 1. DeepSeek-V3.2 / DeepSeek-R1 · 2. Google Gemma 4 · 3. Z.ai GLM 5 · 4. Kimi K2.5 · 5. MiniMax M2.5 · 6. LLaMA 4 · 7. Qwen 3.5.",
+        "display_url": "https://www.instaclustr.com/education/open-source-ai/top-7-open-source-llms-for-2026/",
+        "hostname": "www.instaclustr.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/CoIXQIwwGaeQ0yVL8Bx8M1tVaKLXbZW8L-nehsFLzF7r-0aRxJkkyPkPVgyG0nOnC4a7xvxQ6FP-Sb0-smtK7A:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "Large Language Models (LLMs) are machine learning models that can understand and generate human language based on large-scale datasets. Unlike proprietary models developed by companies like OpenAI and Google, open source LLMs are licensed to be freely used, modified, and distributed by anyone. They offer transparency and flexibility, which can be particularly useful for research, development of AI agents, and customization in various applications.\n\nResearchers and developers can access the underlying code, training mechanisms, and datasets, enabling them to deeply understand and improve these",
+            "score": 0.9979332055218498
+          },
+          {
+            "chunk": "**Open source LLMs** are fully accessible for anyone to use, modify, and distribute (although some models require prior approval to use, and some might restrict commercial use of the model). This transparency allows for extensive customization and examination, enabling users to adapt the models to their needs. Open source models offer more freedom, often requiring less financial investment and enabling users to mitigate vendor lock-in risks.\n\n**Closed source LLMs** are proprietary, with restricted access to the code, training methods, and datasets, limiting user control and customization.",
+            "score": 0.9957187454592983
+          },
+          {
+            "chunk": "Open source large language models offer several advantages:\n\n- **Enhanced data security and privacy:** Users have full control over the data processed by these models, eliminating concerns of third-party access or data mishandling. Organizations can deploy open source LLMs on their private infrastructure, ensuring sensitive information remains in-house and complies with data protection requirements.\n- **Cost savings and reduced vendor dependency:** Since the code and models are freely available, organizations save on pay-per-use and licensing fees and can allocate resources toward customizing",
+            "score": 0.9864678513445929
+          }
+        ],
+        "published_date": "2026-04-18T00:00:00Z"
+      },
+      {
+        "title": "The Best Open-Source LLMs in 2026",
+        "url": "https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models",
+        "snippet": "Explore the best open-source LLMs and find answers to common FAQs about performance, inference optimization, and self-hosted deployment.",
+        "display_url": "https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models",
+        "hostname": "www.bentoml.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/9LInHSSMQLVYLj1CuTu7lQpNCx4njEUTFzsdRS4I_UIfMTo3ocheUIsMtWerUZMtTAd_WQr4R8HrXgmAZs7r0A:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "The rapid rise of large language models (LLMs) has transformed how we build modern AI applications. They now power everything from customer support chatbots to complex LLM agents that can reason, plan, and take actions across tools.\n\nFor many AI teams, closed-source options like GPT-5.5 and Opus-4.6 are convenient. With just a simple API call, you can prototype an AI product in minutes — no GPUs to manage and no infrastructure to maintain. However, this convenience comes with trade-offs: vendor lock-in, limited customization, unpredictable pricing and performance, and ongoing concerns about",
+            "score": 0.9949199630015225
+          },
+          {
+            "chunk": "Generally speaking, open-source LLMs are language models whose architecture, code, and weights are publicly released so anyone can download them, run them locally, fine-tune them, and deploy them in their own infrastructure. They give teams full control over inference, customization, data privacy, and long-term costs.\n\nHowever, the term “open source” is often used loosely. Many models are openly available, but their licensing falls under **open weights**, not traditional open source.\n\nOpen weights here means the model parameters are published and free to download, but the license may not meet",
+            "score": 0.9938070098421449
+          },
+          {
+            "chunk": "The OSI highlights the key differences:\n\n| **Feature** | **Open Weights** | **Open Source** |\n| --- | --- | --- |\n| **Weights & Biases** | Released | Released |\n| **Training code** | Not shared | Fully shared |\n| **Intermediate checkpoints** | Withheld | Nice to have |\n| **Training dataset** | Not shared or disclosed | Released (when legally allowed) |\n| **Training data composition** | Partially disclosed or not disclosed | Fully disclosed |\n\nBoth categories allow developers to self-host models, inspect their behaviors, and fine-tune them. The main differences lie in licensing freedoms and",
+            "score": 0.9439706148821183
+          }
+        ]
+      },
+      {
+        "title": "What are Open Source Large Language Models? | IBM",
+        "url": "https://www.ibm.com/think/topics/open-source-llms",
+        "snippet": "Open source LLM models allow you to create an app with language generation abilities, such as writing emails, blog posts or creative stories. An LLM like Falcon ...",
+        "display_url": "https://www.ibm.com/think/topics/open-source-llms",
+        "hostname": "www.ibm.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/MIBSqDBXwjka6WI1z1z56nx5ONn8lr4PZH1-hJFlHNnKl3LlK2zl2csbXwgjbs_i:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "These can understand and answer questions, offer suggestions and engage in natural language conversation.\n\nOpen source LLMs that train on multilingual datasets can provide accurate and fluent translations in many languages.\n\nLLMs can analyze text to determine emotional or sentiment tone, which is valuable in brand reputation management and analysis of customer feedback.\n\nLLMs can be valuable in identifying and filtering out inappropriate or harmful online content, which is a huge help in maintaining a safer online environment.\n\nA wide range of organization types use open source LLMs. For",
+            "score": 0.9930423911926235
+          },
+          {
+            "chunk": "Large language models (LLMs) are foundation models that use artificial intelligence (AI), deep learning and massive data sets, including websites, articles and books, to generate text, translate between languages and write many types of content. There are two types of these generative AI models: proprietary large language models and open source large language models.\n\nIn this video, Martin Keen briefly explains large language models, how they relate to foundation models, how they work and how they can be used to address various business problems.\n\nProprietary LLMs are owned by a company and",
+            "score": 0.9912548183179649
+          },
+          {
+            "chunk": "They are generally much less expensive in the long term than proprietary LLMs because no licensing fees are involved. However, the cost of operating an LLM does include the cloud or on-premises infrastructure costs, and they typically involve a significant initial rollout cost.\n\nPre-trained, open source LLMs allow fine-tuning. Enterprises can add features to the LLM that benefit their specific use, and the LLMs can also be trained on specific datasets. Making these changes or specifications on a proprietary LLM entails working with a vendor and costs time and money.\n\nWhile proprietary LLMs",
+            "score": 0.9891815513471369
+          }
+        ],
+        "published_date": "2023-09-27T00:00:00Z"
+      },
+      {
+        "title": "The Best Open Source LLM Guide 2026: Models | Mastra Articles",
+        "url": "https://mastra.ai/articles/open-source-llm",
+        "snippet": "Compare the best open source LLM models in 2026, how licensing works, deployment tradeoffs, and how to evaluate and run open models in ...",
+        "display_url": "https://mastra.ai/articles/open-source-llm",
+        "hostname": "mastra.ai",
+        "favicon_url": "https://s.qwant.com/v1/fav/A3XOvgfMNee7uL9cyM3CVywPSjeOm4EY8-FFxvIC7-wJmyZP1iCGW1j46SfWkPjo:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "You want the control of running your own models without paying per token to a vendor whose roadmap you can’t see. An open source LLM gives you that: weights you can download, inspect, adapt, and serve on your own hardware. The tradeoff is that you now own the infrastructure, the evaluation, and the safety story.\n\nThat tradeoff has gotten easier to accept. Open source LLMs now trail the strongest proprietary systems by roughly four months on average, and for coding, reasoning, and agentic work the gap is nearly closed. The hard part is no longer whether an open model is good enough. It is",
+            "score": 0.9842760094722643
+          },
+          {
+            "chunk": "You have more open source LLM models worth evaluating than at any point before, and most of the frontier open models now share a pattern: mixture-of-experts architectures, million-token contexts, and a clear focus on coding and agentic work.\n\nThe best open source LLM models below are the ones worth benchmarking first. Treat this as a starting shortlist, not a ranking, because releases leapfrog each other within months.\n\n| **Model** | **Total params** | **Active params** | **License** | **Context length** | **Primary strength** |\n| --- | --- | --- | --- | --- | --- |\n| DeepSeek-V4-Pro | 1.6T |",
+            "score": 0.8942365768704993
+          },
+          {
+            "chunk": "The term gets used loosely, though, and the distinction matters when you sign off on a license.\n\nMany models marketed as “open” are more precisely open weights. The parameters ship publicly, but the training code, training dataset, and intermediate checkpoints stay private. That difference affects how much you can reproduce, audit, and trust about a model’s provenance.\n\nYou will hit three categories when you shop for a model, and they sit on a spectrum of openness. Proprietary models like the closed frontier systems from OpenAI live behind an API. You send data out, you get a response back,",
+            "score": 0.6943026711575786
+          }
+        ],
+        "published_date": "2026-08-08T00:00:00Z"
+      },
+      {
+        "title": "Should you use open source LLM? | Technology Explained | IBM",
+        "url": "https://www.ibm.com/think/videos/open-source-llm-use",
+        "snippet": "Large Language Models (LLMs) can be proprietary to a given company, or open source and free for anyone to access and modify. While proprietary LLMs are ...",
+        "display_url": "https://www.ibm.com/think/videos/open-source-llm-use",
+        "hostname": "www.ibm.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/MIBSqDBXwjka6WI1z1z56nx5ONn8lr4PZH1-hJFlHNnKl3LlK2zl2csbXwgjbs_i:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "Large Language Models (LLMs) can be proprietary to a given company, or open source and free for anyone to access and modify. While proprietary LLMs are often larger, the benefits of transparency, fine-tuning, and community contributions make open source an attractive alternative. Both proprietary and open source LLMs share risks, including inaccuracies, bias, and security concerns. In this video, Master Inventor Martin Keen covers the tradeoffs so you can make an informed decision of which option is best for you.\n\nIBM watsonx.ai is the next-generation enterprise studio for AI builders –",
+            "score": 0.9710742821322725
+          }
+        ],
+        "published_date": "2024-06-28T00:00:00Z"
+      },
+      {
+        "title": "The best open-source large language models (LLMs)",
+        "url": "https://www.baseten.co/blog/the-best-open-source-large-language-models-llms/",
+        "snippet": "We evaluated nine of the best open-source models: DeepSeek V4 Pro 0813, Gemma 4, GLM-5.3, GPT OSS 120B, Kimi K3, MiniMax M3, ...",
+        "display_url": "https://www.baseten.co/blog/the-best-open-source-large-language-models-llms/",
+        "hostname": "www.baseten.co",
+        "favicon_url": "https://s.qwant.com/v1/fav/xdBCKT1nF0pOVr8SWU0atmpqGku43FvU9TpsooWFMYwQkzPbwJpu9dC7noRQxcC-QEpeGtVXMEqo7S7lyzzB3w:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "We evaluated nine of the best open-source models: DeepSeek V4 Pro 0813, Gemma 4, GLM-5.3, GPT OSS 120B, Kimi K3, MiniMax M3, Nemotron 3 Ultra, and Qwen 3.6. Kimi K3 is the most well-rounded; Qwen 3.6 and GLM-5.3 lead for agentic coding; DeepSeek and Nemotron dominate long-context and enterprise workloads; and GPT OSS 120B performs well on cost and speed.\n\nNew LLMs drop every day. With so many choices, it might be hard to select the right one! You might have a variety of tasks in front of you that could require coding, agentic workflows, or long context reasoning, for example. Whatever your",
+            "score": 0.9698996627595705
+          },
+          {
+            "chunk": "DeepSeek V4 Pro 0813 is a frontier open-source model built for agentic coding and complex STEM reasoning. Its architecture allows for a 1M-token context window through a hybrid attention mechanism:\n\n**CSA (Compressed Sparse Attention)** shrinks the KV cache: instead of keeping one entry for every token, it summarizes groups of tokens into a smaller set of compressed entries. (Keys help the model figure out which words to pay attention to, and values determine what information gets added to a word's meaning based on which is relevant. They are collectively cached as the “KV cache”.) It then",
+            "score": 0.8054792244270543
+          },
+          {
+            "chunk": "**Manifold-Constrained Hyper-Connections (mHC)** keep training stable at scale, allowing DeepSeek to reliably train models with massive context windows by replacing the standard residual addition between layers with a mathematically constrained mixing operation.\n\nSpeculative decoding is a technique used to speed up LLM inference by using a smaller, faster draft model to predict multiple tokens in parallel, which the larger, more accurate LLM then verifies. DeepSeek V4 Pro builds speculation directly into the model, which makes deployment easier. The V4 Pro 0813 includes an attached DSpark",
+            "score": 0.7849791024442563
+          }
+        ],
+        "published_date": "2026-06-17T00:00:00Z"
+      },
+      {
+        "title": "Best Open-Source LLMs (Updated July 2026): Top Models",
+        "url": "https://acecloud.ai/blog/best-open-source-llms/",
+        "snippet": "Compare the best open-source and open-weight LLMs in 2026 for coding, reasoning, RAG, local use, enterprise deployment, hardware and licensing.",
+        "display_url": "https://acecloud.ai/blog/best-open-source-llms/",
+        "hostname": "acecloud.ai",
+        "favicon_url": "https://s.qwant.com/v1/fav/MIBSqDBXwjka6WI1z1z56rmZBe40fzClN0TOmJQXvbFTJWc7jEpxgIFvOA5EKhoR:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "An **open-weight LLM** makes its trained parameters available for download. You can usually run it on your infrastructure, quantize it and fine-tune it, subject to its licence.\n\nA fully **open-source AI system**, under the Open Source Initiative’s definition, must also provide the freedoms to use, study, modify and share the system. That requires sufficient training-data information, training and inference code, and model parameters in the preferred form for modification.\n\nThis distinction matters because:\n\n- A model can have an MIT or Apache 2.0 weight licence without disclosing its complete",
+            "score": 0.9671630439727548
+          },
+          {
+            "chunk": "As of July 2026, GLM-5.2 is the strongest all-round open-weight LLM in this comparison, while Kimi K2.7 Code stands out for coding agents, Gemma 4 12B is a practical laptop model, and Nemotron 3 Super suits teams prioritizing open training resources. The right choice still depends on workload, hardware and licence.",
+            "score": 0.9029524430206697
+          },
+          {
+            "chunk": "GLM-5.2 is the strongest general recommendation for teams that want a frontier-scale open-weight model.\n\nIt provides a one-million-token context window, multiple reasoning-effort levels and a focus on long-horizon coding and agentic work. Its developers also report that the IndexShare architecture reduces per-token computation at one-million-token context compared with their earlier sparse-attention design. The model and repository are released under the MIT licence.\n\n**Choose GLM-5.2 for:**\n\n- Repository-scale software work.\n- Long-running research or coding agents.\n- Large-document",
+            "score": 0.9024377762417778
+          }
+        ],
+        "published_date": "2026-07-14T00:00:00Z"
+      },
+      {
+        "title": "Best Open Source LLM Leaderboard 2026 | Open Source Model Rankings and Tier List",
+        "url": "https://onyx.app/open-llm-leaderboard",
+        "snippet": "Compare the best open source models and LLMs on coding, reasoning, math, and software engineering benchmarks. Tier list, benchmark scores, ...",
+        "display_url": "https://onyx.app/open-llm-leaderboard",
+        "hostname": "onyx.app",
+        "favicon_url": "https://s.qwant.com/v1/fav/7EyZb6mNH6Qoprx4OBZ0iiydrVxVHNHeg-spz8UYLnvk-_UzVxcCwtNhJ0M2c4tc:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "Compare Open Source LLMs Head-to-Head\n\nSelect two open source models to see how they stack up across all benchmarks.\n\nModel A\n\nModel B\n\nGemma 4 31B\n\nMistral Small 4\n\nGPQA Diamond\n\n84.3\n\nvs\n\n71.2\n\nBenchmarks won\n\n1\n\nvs\n\n0\n\nTry These Open Source Models in Onyx\n\nOnyx is the open-source AI platform that lets you connect any of these open source LLMs to your team's docs, apps, and people.",
+            "score": 0.8646536750380953
+          },
+          {
+            "chunk": "Best Open Source Models — 2026 Rankings\n\nOpen Source LLM Leaderboard\n\nThe definitive ranking of every major open source model — compared across reasoning, coding, math, software engineering, and instruction following benchmarks.\n\nRoshan Desai · Last updated: 2026-07-20\n\nS\n\nKimi K3\n\n2.8T\n\nGLM-5.2\n\n753B\n\nDeepSeek-V4-Pro\n\n1.6T\n\nKimi K2.6\n\n1T\n\nA\n\nMiniMax M3\n\n428B\n\nDeepSeek-V4-Flash\n\n284B\n\nHunyuan Hy3\n\n295B\n\nStep-3.7-Flash\n\n198B\n\nQwen3.6-27B\n\n27B\n\nQwen3.6-35B-A3B\n\n35B\n\nNemotron 3 Ultra\n\n550B\n\nGLM-4.7\n\n355B\n\nMiMo-V2-Flash\n\n309B\n\nDeepSeek R1\n\n671B\n\nB\n\nMiniMax M2.7\n\n230B\n\nGemma 4 31B\n\n31B\n\nMistral",
+            "score": 0.6359010243878394
+          },
+          {
+            "chunk": "| Step-3.5-Flash<br>Stepfun | 196B | 262K | 85.8 | N/A | N/A | 1389 | 74.4 | 81.1 | 86.4 | 99.8 | N/A | N/A |\n| Step-3.7-Flash<br>Stepfun | 198B | 262K | N/A | N/A | N/A | N/A | 76.5 | N/A | N/A | N/A | N/A | N/A |\n| Step3<br>Stepfun | 316B | 66K | N/A | 73.0 | N/A | 1348 | N/A | N/A | 67.1 | 82.9 | N/A | N/A |",
+            "score": 0.5830253109361754
+          }
+        ]
+      },
+      {
+        "title": "GitHub - eugeneyan/open-llms: 📋 A list of open LLMs available for commercial use.",
+        "url": "https://github.com/eugeneyan/open-llms",
+        "snippet": "Open LLMs ; Bloom, 2022/11, Bloom ; ChatGLM, 2023/03, chatglm-6b ; Cerebras-GPT, 2023/03, Cerebras-GPT ; Open Assistant (Pythia family), 2023/03, OA-Pythia-12B-SFT- ...",
+        "display_url": "https://github.com/eugeneyan/open-llms",
+        "hostname": "github.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/EY3lGlWpeXu7qHOy9V7clQuIucqUBz7NJHA-6b5jckzu5WKF-I9n93fnUXPW9Y_S:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": [
+          {
+            "chunk": "These LLMs (Large Language Models) are all licensed for commercial use (e.g., Apache 2.0, MIT, OpenRAIL-M). Contributions welcome!\n\n| Name | Release Date | Paper/Blog | Dataset | Tokens (T) | License |\n| --- | --- | --- | --- | --- | --- |\n| RedPajama | 2023/04 | RedPajama, a project to create leading open-source models, starts by reproducing LLaMA training dataset of over 1.2 trillion tokens | RedPajama-Data | 1.2 | Apache 2.0 |\n| starcoderdata | 2023/05 | StarCoder: A State-of-the-Art LLM for Code | starcoderdata | 0.25 | Apache 2.0 |\n\n| Name | Release Date | Paper/Blog | Dataset | Samples",
+            "score": 0.7327830999605387
+          },
+          {
+            "chunk": "| Name | Release Date | Paper/Blog | Dataset | Samples (K) | License |\n| --- | --- | --- | --- | --- | --- |\n| OpenAssistant Conversations Dataset | 2023/04 | OpenAssistant Conversations - Democratizing Large Language Model Alignment | oasst1 | 161 | Apache 2.0 |\n\n- Leaderboard by lmsys.org\n- Evals by MosaicML\n- Holistic Evaluation of Language Models (HELM)\n- LLM-Leaderboard\n- TextSynth Server Benchmarks\n- Open LLM Leaderboard by Hugging Face",
+            "score": 0.6320486463511595
+          },
+          {
+            "chunk": "- Apache 2.0: Allows users to use the software for any purpose, to distribute it, to modify it, and to distribute modified versions of the software under the terms of the license, without concern for royalties.\n- MIT: Similar to Apache 2.0 but shorter and simpler. Also, in contrast to Apache 2.0, does not require stating any significant changes to the original code.\n- CC BY-SA-4.0: Allows (i) copying and redistributing the material and (ii) remixing, transforming, and building upon the material\n  for any purpose, even commercially. But if you do the latter, you **must distribute your",
+            "score": 0.5830846619783866
+          }
+        ],
+        "published_date": "2023-05-05T00:00:00Z"
+      },
+      {
+        "title": "Have we reached the point where open-source LLMs are “ ...",
+        "url": "https://www.reddit.com/r/LocalLLaMA/comments/1u0yo32/have_we_reached_the_point_where_opensource_llms/",
+        "snippet": "The question I’m asking myself is whether open-source LLMs are now “just good enough” to meet 95% of requirements. I know, of course, that they still ...",
+        "display_url": "https://www.reddit.com/r/LocalLLaMA/comments/1u0yo32/have_we_reached_the_point_where_opensource_llms/",
+        "hostname": "www.reddit.com",
+        "favicon_url": "https://s.qwant.com/v1/fav/xdBCKT1nF0pOVr8SWU0atsR624rA1ndR_lfNBo-WJo0W8ZO8gvqio0VYs2CyXXiX3M-3DIrz_5IQssr1srDvLg:f57b609d64291580641cf6e2ac180774",
+        "extra_snippets": []
+      }
+    ]
+  }
+}

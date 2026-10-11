@@ -1,0 +1,37 @@
+{
+  "request_id": "01938fc2-1b3a-7e4d-9c12-a4f8e3c20d94",
+  "answer": "The Eiffel Tower is about 330 metres tall. It was completed in 1889 for the World Fair. Millions of people visit it every year.",
+  "citations": [],
+  "sources": [
+    {
+      "id": "1",
+      "url": "https://example.org/eiffel-tower",
+      "title": "Eiffel Tower facts"
+    },
+    {
+      "id": "2",
+      "url": "https://example.org/paris-landmarks",
+      "title": "Paris landmarks"
+    },
+    {
+      "id": "3",
+      "url": "https://example.org/world-fair-1889",
+      "title": "The 1889 World Fair"
+    }
+  ],
+  "related_queries": [
+    "How was the Eiffel Tower built?"
+  ],
+  "usages": [
+    {
+      "step": "query_rewrite",
+      "input_tokens": 95,
+      "output_tokens": 12
+    },
+    {
+      "step": "answer",
+      "input_tokens": 2840,
+      "output_tokens": 194
+    }
+  ]
+}

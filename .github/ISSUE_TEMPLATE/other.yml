@@ -1,0 +1,28 @@
+name: Other
+description: Documentation problems, requests for examples, or anything else.
+title: "[Other]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a bug, a question or a feature idea, please use the matching template instead.
+        Never paste your API key, an access token or an `Authorization` header.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Documentation problem
+        - Request for example
+        - Request for documentation
+        - Request for comment
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe what you would like to see improved.
+    validations:
+      required: true

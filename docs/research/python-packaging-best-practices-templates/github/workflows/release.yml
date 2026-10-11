@@ -1,0 +1,105 @@
+name: Release
+
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+*"]
+
+permissions: {}
+
+env:
+  UV_FROZEN: "1"
+
+jobs:
+  build:
+    name: Build, SBOM and provenance
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # sigstore signing for attestations
+      attestations: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          python-version: "3.13"
+          enable-cache: false # never restore caches in a release job (cache poisoning)
+      - name: Check tag, pyproject version and server.json agree
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version="$(uv version --short)"
+          test "v${version}" = "${TAG}" || { echo "tag ${TAG} != project version ${version}"; exit 1; }
+          jq -e --arg v "${version}" '.version == $v and (.packages | all(.version == $v))' server.json
+      - run: uv build --no-sources
+      - run: uvx twine check --strict dist/*
+      - name: Generate CycloneDX SBOM from the lockfile
+        run: uv export --frozen --no-dev --no-emit-project --format cyclonedx1.5 --preview-features sbom-export --output-file dist-sbom.cdx.json
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-path: dist/*
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: dist
+          path: |
+            dist/
+            dist-sbom.cdx.json
+
+  publish-pypi:
+    name: Publish to PyPI (Trusted Publishing)
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/demo-pkg/
+    permissions:
+      id-token: write # required for Trusted Publishing and PEP 740 attestations
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+        with:
+          packages-dir: dist/
+          print-hash: true
+
+  github-release:
+    name: GitHub release
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: dist
+      - name: Create release with assets in one call (works with immutable releases)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: gh release create "${TAG}" dist/* dist-sbom.cdx.json --verify-tag --generate-notes --title "${TAG}"
+
+  publish-mcp-registry:
+    name: Publish to the MCP Registry
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # GitHub OIDC login to the registry
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install mcp-publisher (checksum verified)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISHER_VERSION: v1.8.1
+        run: |
+          gh release download "${PUBLISHER_VERSION}" --repo modelcontextprotocol/registry \
+            --pattern "mcp-publisher_linux_amd64.tar.gz" --pattern "registry_*_checksums.txt"
+          grep " mcp-publisher_linux_amd64.tar.gz$" registry_*_checksums.txt | sha256sum --check -
+          tar xzf mcp-publisher_linux_amd64.tar.gz mcp-publisher
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish
