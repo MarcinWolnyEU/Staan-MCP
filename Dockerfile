@@ -14,7 +14,7 @@
 # ecosystem) only recognises that form; a tag built from an ARG (`uv:${UV_VERSION}`) makes it skip
 # the line, so do not reintroduce ARGs here. The uv tag matches the uv pinned in the workflows and
 # the `uv_build` build requirement (tests/repo checks this). Both images ship amd64 and arm64.
-FROM ghcr.io/astral-sh/uv:0.12.21@sha256:a7aed3216253ee804de3e2d8afa5073baa1a177335345d43845cd4165e43b711 AS uv
+FROM ghcr.io/astral-sh/uv:0.13.0@sha256:cdc6093146eb3ff6a40107b38f008b789e050e77ad87865e381d9917da55a168 AS uv
 
 FROM python:3.13-slim-trixie@sha256:3dd7cc108ec1493442514f5c2a871af6af0ec31d768ff6e378a93340c3b3db5f AS builder
 COPY --from=uv /uv /uvx /bin/
