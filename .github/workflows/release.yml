@@ -23,11 +23,8 @@ jobs:
     uses: ./.github/workflows/ci.yml # zizmor: ignore[self-repository]
     with:
       release: true
-    # A called workflow gets at most the caller's permissions, and ci.yml's codecov job declares
-    # id-token: write (it is skipped here through `release: true`, but the declaration counts).
     permissions:
       contents: read
-      id-token: write # ceiling for the called codecov job (skipped here)
 
   # Everything that runs third-party code (build backend, checkers, uv) has no token to steal:
   # this job only reads the repository. Signing happens in the separate `attest` job, which

@@ -41,8 +41,7 @@ def test_release_runs_the_whole_ci_workflow_first() -> None:
     ci = RELEASE_JOBS["ci"]
     assert ci["uses"] == "./.github/workflows/ci.yml"
     assert ci["with"] == {"release": True}
-    # The caller must grant every permission a called job declares (codecov: id-token).
-    assert ci["permissions"] == {"contents": "read", "id-token": "write"}
+    assert ci["permissions"] == {"contents": "read"}
     assert _needs("build") == {"ci"}
     for job_id in RELEASE_JOBS.keys() - {"ci"}:
         assert "ci" in _upstream(job_id), job_id
