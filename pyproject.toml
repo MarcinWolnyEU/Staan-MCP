@@ -1,11 +1,11 @@
 [build-system]
 # Pinned exactly: the build runs in the privileged release job, so it must not float.
-requires = ["uv_build==0.12.21"]
+requires = ["uv_build==0.13.0"]
 build-backend = "uv_build"
 
 [project]
 name = "staan-mcp"
-version = "1.0.0"
+version = "1.0.1"
 description = "MCP server for the Staan API: web search and grounded answers over stdio or streamable HTTP."
 readme = "README.md"
 license = "MIT"

@@ -171,7 +171,7 @@ from staan_mcp.upstream import (  # noqa: E402
 
 # pylint: enable=wrong-import-position
 
-VERSION: Final = "1.0.0"
+VERSION: Final = "1.0.1"
 """Same as the package version; ``cz bump`` rewrites it and a test compares it."""
 
 SUPPORTED_PROTOCOL_VERSIONS: Final = ("2024-11-05", "2025-03-26", "2025-06-18", "2025-11-25")

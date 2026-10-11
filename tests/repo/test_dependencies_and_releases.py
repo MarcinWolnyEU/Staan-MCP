@@ -55,7 +55,7 @@ def test_dependabot_regex_rejects_an_interpolated_tag() -> None:
 def test_runtime_image_uses_a_supported_debian_and_read_only_packages() -> None:
     lines = _from_lines()
     assert [line.split("@", 1)[0] for line in lines] == [
-        "FROM ghcr.io/astral-sh/uv:0.12.21",
+        "FROM ghcr.io/astral-sh/uv:0.13.0",
         "FROM python:3.13-slim-trixie",
         "FROM python:3.13-slim-trixie",
     ]
