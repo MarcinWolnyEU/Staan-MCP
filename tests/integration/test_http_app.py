@@ -391,7 +391,8 @@ async def test_a_valid_token_reaches_the_tools(
         result = await client.call_tool("web_search", {"query": "python"})
 
     assert result.is_error is False
-    assert "https://a.example" in text_of(result)
+    items = json.loads(text_of(result))
+    assert any(urlsplit(item["url"]).hostname == "a.example" for item in items)
     assert "good" in verifier.seen
 
 

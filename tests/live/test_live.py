@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 from typing import TYPE_CHECKING
+from urllib.parse import urlsplit
 
 import pytest
 from mcp import Client
@@ -91,7 +92,8 @@ async def test_web_search_tool_full_content_and_domain_filter(client: Client) ->
     assert result.is_error is False
     items = json.loads(_text(result.content))
     assert items
-    assert all("python.org" in item["url"] for item in items)
+    hosts = [urlsplit(item["url"]).hostname or "" for item in items]
+    assert all(h == "python.org" or h.endswith(".python.org") for h in hosts)
     assert any(item.get("full_content") for item in items)
 
 

@@ -1,5 +1,6 @@
 """Live E2E over stdio. Keys are read at runtime and passed only via the child env."""
 import json, os, sys
+from urllib.parse import urlsplit
 from pathlib import Path
 import anyio
 from mcp import Client
@@ -74,7 +75,8 @@ async def main():
 
             r = await call(client, "web_search", {"query": "python", "market": "en-us", "full_content": "none", "include_domains": ["https://www.python.org/"]})
             data = json.loads(text(r))
-            check("include_domains python.org", not r.is_error and len(data) > 0 and all("python.org" in x["url"] for x in data), f"{len(data)} results")
+            hosts = [urlsplit(x["url"]).hostname or "" for x in data]
+            check("include_domains python.org", not r.is_error and len(data) > 0 and all(h == "python.org" or h.endswith(".python.org") for h in hosts), f"{len(data)} results")
 
             r = await call(client, "web_search", {"query": "python", "market": "en-us", "full_content": "none", "offset": 10})
             data10 = json.loads(text(r))
