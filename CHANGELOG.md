@@ -7,6 +7,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Releases]
 
+## [Unreleased]
+
+### Fixed
+
+- README Python-versions badge showed shields.io's "package or version not found" after the first
+  PyPI release: GitHub's image proxy had cached the pre-publish render under its URL for 24 h and
+  kept serving it. The two PyPI badge URLs now carry an inert cache-busting query.
+
 ## [1.0.1] - 2026-10-12
 
 ### Changed

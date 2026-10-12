@@ -2,8 +2,11 @@
 
 # staan-mcp
 
-[![Python versions](https://img.shields.io/pypi/pyversions/staan-mcp)](https://pypi.org/project/staan-mcp/)
-[![PyPI version](https://img.shields.io/pypi/v/staan-mcp)](https://pypi.org/project/staan-mcp/)
+<!-- cacheBust on the two PyPI badges: GitHub's image proxy caches badge images per URL for 24 h and
+     kept serving the pre-publish "package or version not found" render after the first PyPI release.
+     The query is inert; it only gives the image proxy a fresh cache key. Keep it. -->
+[![Python versions](https://img.shields.io/pypi/pyversions/staan-mcp?cacheBust=1)](https://pypi.org/project/staan-mcp/)
+[![PyPI version](https://img.shields.io/pypi/v/staan-mcp?cacheBust=1)](https://pypi.org/project/staan-mcp/)
 [![CI](https://github.com/MarcinWolnyEU/Staan-MCP/actions/workflows/ci.yml/badge.svg)](https://github.com/MarcinWolnyEU/Staan-MCP/actions/workflows/ci.yml)
 [![Codecov](https://codecov.io/gh/MarcinWolnyEU/Staan-MCP/graph/badge.svg)](https://codecov.io/gh/MarcinWolnyEU/Staan-MCP)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/MarcinWolnyEU/Staan-MCP/badge)](https://scorecard.dev/viewer/?uri=github.com/MarcinWolnyEU/Staan-MCP)
