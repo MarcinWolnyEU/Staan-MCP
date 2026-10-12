@@ -1,12 +1,9 @@
 <!-- mcp-name: io.github.MarcinWolnyEU/staan-mcp -->
 
-# staan-mcp
+# Staan-MCP
 
-<!-- cacheBust on the two PyPI badges: GitHub's image proxy caches badge images per URL for 24 h and
-     kept serving the pre-publish "package or version not found" render after the first PyPI release.
-     The query is inert; it only gives the image proxy a fresh cache key. Keep it. -->
-[![Python versions](https://img.shields.io/pypi/pyversions/staan-mcp?cacheBust=1)](https://pypi.org/project/staan-mcp/)
-[![PyPI version](https://img.shields.io/pypi/v/staan-mcp?cacheBust=1)](https://pypi.org/project/staan-mcp/)
+[![Python versions](https://img.shields.io/pypi/pyversions/staan-mcp)](https://pypi.org/project/staan-mcp/)
+[![PyPI version](https://img.shields.io/pypi/v/staan-mcp)](https://pypi.org/project/staan-mcp/)
 [![CI](https://github.com/MarcinWolnyEU/Staan-MCP/actions/workflows/ci.yml/badge.svg)](https://github.com/MarcinWolnyEU/Staan-MCP/actions/workflows/ci.yml)
 [![Codecov](https://codecov.io/gh/MarcinWolnyEU/Staan-MCP/graph/badge.svg)](https://codecov.io/gh/MarcinWolnyEU/Staan-MCP)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/MarcinWolnyEU/Staan-MCP/badge)](https://scorecard.dev/viewer/?uri=github.com/MarcinWolnyEU/Staan-MCP)
@@ -16,7 +13,7 @@
 [![mypy: strict](https://img.shields.io/badge/mypy-strict-blue)](https://mypy-lang.org/)
 [![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.MarcinWolnyEU%2Fstaan--mcp-informational)](https://registry.modelcontextprotocol.io/)
 
-A [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server for the European search engine [STAAN](https://staan.ai/) (Search Trusted API Access Network) built by the [European Perspective SAS](https://www.eu-searchperspective.com/), co-owned by Qwant and Ecosia search engines. It's an open European alternative to Exa Search and other SERP services, with its own index, oriented primarily at the European markets (+parts of Commonwealth), giving it a unique perspective that other search providers might be missing. Free subscription grants 1000 requests per month.
+An MCP server for the European search engine [STAAN](https://staan.ai/) (Search Trusted API Access Network) built by the [European Perspective SAS](https://www.eu-searchperspective.com/), co-owned by Qwant and Ecosia search engines. It's an open European alternative to Exa Search and other SERP services, with its own index, oriented primarily at the European markets (+parts of Commonwealth), giving it a unique perspective that other search providers might be missing. Free subscription grants 1000 requests per month.
 
 MCP comes with two tools:
 
@@ -56,6 +53,18 @@ If you are an LLM or simply need more details, continue further on.
 ## Detailed setup
 
 ### Three ways to run it
+
+1. Installed package
+
+`uvx staan-mcp`, or `pip install staan-mcp` - installs a number of dependencies - the MCP SDK, `httpx2`, `pydantic`, `anyio` (and `pyjwt` for the OAuth gate). In exchange provides not just stdio, but also [Streamable HTTP](https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http) and stateless streamable HTTP connections, both HTTP connections with OAuth gate.
+
+2. Download and run
+
+Download it [on GitHub via Code->Download ZIP](https://github.com/MarcinWolnyEU/Staan-MCP) or via git clone. Then you can configure your MCP to run through `stdio_server.py` (See: [Without installing anything](#without-installing-anything) part of the install guide)
+
+3. Via releases
+
+Download the latest [release](https://github.com/MarcinWolnyEU/Staan-MCP/releases)
 
 | | 1. Installed package | 2. Download and run (checkout) | 3. Single-file bundle |
 |---|---|---|---|
@@ -171,30 +180,6 @@ Ways 2 and 3 need no `pip install`, no virtual environment and no third-party pa
 plain Python 3.11 or newer, and they serve stdio only (HTTP and the OAuth gate need the
 [installed package](#quickstart)).
 
-**Single-file bundle (way 3).** Download `staan-mcp-stdio.pyz` from the
-[latest release](https://github.com/MarcinWolnyEU/Staan-MCP/releases/latest), put it anywhere and
-point your client at it:
-
-```json
-{
-  "mcpServers": {
-    "staan": {
-      "command": "python",
-      "args": ["/path/to/staan-mcp-stdio.pyz"],
-      "env": { "STAAN_API_KEY": "your-staan-api-key" }
-    }
-  }
-}
-```
-
-The file is a Python zip application: `python staan-mcp-stdio.pyz --version` prints
-`staan-stdio X.Y.Z`. It contains exactly the standard-library modules of the package that
-`stdio_server.py` imports, and nothing else. Each release attaches it next to the wheel and sdist,
-with a signed build provenance attestation
-(`gh attestation verify staan-mcp-stdio.pyz --repo MarcinWolnyEU/Staan-MCP`). The build is
-reproducible: `python scripts/build_zipapp.py` in a checkout of the tag writes byte-identical
-output and prints its SHA-256.
-
 **From a checkout (way 2).** Download the repository (`git clone` or the zip of the source tree),
 keep `src/staan_mcp/` together, and point your client at one file,
 `src/staan_mcp/stdio_server.py`:
@@ -230,6 +215,30 @@ environment variables, results and error messages as the installed package (test
 on the same inputs), over stdio only. It has its own small `urllib` transport instead of `httpx2`,
 and the same retry policy. It is checked by the same lint, type, complexity and coverage gates as
 the rest of the package; only mutation testing skips it.
+
+**Single-file bundle (way 3).** Download `staan-mcp-stdio.pyz` from the
+[latest release](https://github.com/MarcinWolnyEU/Staan-MCP/releases/latest), put it anywhere and
+point your client at it:
+
+```json
+{
+  "mcpServers": {
+    "staan": {
+      "command": "python",
+      "args": ["/path/to/staan-mcp-stdio.pyz"],
+      "env": { "STAAN_API_KEY": "your-staan-api-key" }
+    }
+  }
+}
+```
+
+The file is a Python zip application: `python staan-mcp-stdio.pyz --version` prints
+`staan-stdio X.Y.Z`. It contains exactly the standard-library modules of the package that
+`stdio_server.py` imports, and nothing else. Each release attaches it next to the wheel and sdist,
+with a signed build provenance attestation
+(`gh attestation verify staan-mcp-stdio.pyz --repo MarcinWolnyEU/Staan-MCP`). The build is
+reproducible: `python scripts/build_zipapp.py` in a checkout of the tag writes byte-identical
+output and prints its SHA-256.
 
 ## Tool reference
 
@@ -460,7 +469,7 @@ Example tool calls:
 }
 ```
 
-### Errors
+### Error responses
 
 | Situation | What the tool reports |
 |---|---|
@@ -504,41 +513,6 @@ never refuses them, and a delayed call just takes a little longer.
   so their budgets add up: split the budget between them with `STAAN_RATE_LIMIT`.
 - **Logs.** A delayed request is logged at `DEBUG` level with its delay (the download-and-run
   variants write one line to stderr); requests within the budget log nothing.
-
-## Transports
-
-| Transport | Flag | Description |
-|---|---|---|
-| stdio | `--transport stdio` (default) | The client launches the server as a subprocess. Credentials come from the environment. Logs go to stderr. |
-| http | `--transport http` | [Streamable HTTP](https://modelcontextprotocol.io/specification/latest/basic/transports#streamable-http) with sessions, served at `http://HOST:PORT/mcp`. |
-| stateless | `--transport stateless` | Streamable HTTP without sessions and with plain JSON responses (no SSE). Each request is independent, so it works behind a load balancer and on serverless platforms. |
-
-The download-and-run variants ([ways 2 and 3](#three-ways-to-run-it)) serve stdio only; for HTTP
-or the OAuth gate, install the package.
-
-```bash
-# Local HTTP server on 127.0.0.1:8000/mcp (loopback only, safe by default)
-STAAN_API_KEY=... uvx staan-mcp --transport http
-
-# Connect a client
-claude mcp add --transport http staan http://127.0.0.1:8000/mcp
-```
-
-HTTP startup rules (a violation prints a message to stderr and exits with status 2):
-
-- On a loopback host (`localhost` in any case, any `127.0.0.0/8` address, `::1` in any
-  spelling) no extra options are needed. DNS-rebinding protection is always active there: the
-  server hands the SDK explicit settings that accept only loopback `Host` and `Origin` headers and
-  answer anything else with `421` or `403`. (The SDK switches its own protection on for just the
-  three exact strings `127.0.0.1`, `localhost` and `::1`, so other spellings would otherwise have
-  been left open.) The bind address is also trimmed, lowercased and unbracketed (`[::1]` becomes
-  `::1`).
-- A **non-loopback** host requires access control: either the OAuth gate
-  ([below](#oauth-gate)), or the explicit `--insecure-no-auth` flag.
-- A non-loopback host also requires at least one `--allowed-host` (the `Host` header values
-  you expect, for example `mcp.example.com` and `mcp.example.com:*`).
-- The OAuth gate is not available on stdio. Configuring it there is rejected, because stdio
-  clients should use environment credentials.
 
 ## Configuration
 
@@ -605,80 +579,6 @@ tokens with an unknown `kid` cannot make the server hammer your identity provide
 PyJWT 2.14 or newer, which the `oauth` extra requires. Introspection sends one credentialed
 request per token to your authorization server over one shared connection pool. Tokens that are
 longer than 4,096 characters or not visible ASCII are rejected locally without a request.
-
-## Docker
-
-The image is built from `Dockerfile` (multi-stage, uv, non-root user, includes the `oauth`
-extra, based on `python:3.13-slim-trixie`). Releases publish it to GHCR for `linux/amd64` and
-`linux/arm64`; a release candidate gets only its own version tag, never `latest`. You can always
-build it yourself:
-
-```bash
-docker build -t staan-mcp .
-```
-
-The default command is `staan-mcp --transport stateless --host 0.0.0.0`. Because that binds a
-non-loopback address, the server's startup rules apply, and **a plain `docker run staan-mcp`
-refuses to start** (exit status 2, with an explanation on stderr). That is the intended safe
-default: the image never exposes your key's quota unless you say how access is controlled.
-
-stdio (for MCP clients that launch containers). Override the arguments:
-
-```bash
-docker run -i --rm -e STAAN_API_KEY staan-mcp --transport stdio
-```
-
-Claude Desktop style configuration:
-
-```json
-{
-  "mcpServers": {
-    "staan": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "-e", "STAAN_API_KEY", "staan-mcp", "--transport", "stdio"],
-      "env": { "STAAN_API_KEY": "your-staan-api-key" }
-    }
-  }
-}
-```
-
-HTTP on your own machine only, no OAuth. The container binds `0.0.0.0` internally, but the
-published port is reachable from the host's loopback interface only:
-
-```bash
-docker run --rm -p 127.0.0.1:8000:8000 -e STAAN_API_KEY \
-  staan-mcp --transport stateless --host 0.0.0.0 \
-  --allowed-host localhost:8000 --allowed-host 127.0.0.1:8000 --insecure-no-auth
-```
-
-HTTP for others, with the OAuth gate. Configure everything through the environment:
-
-```bash
-docker run -d --name staan-mcp -p 8000:8000 \
-  -e STAAN_API_KEY \
-  -e STAAN_MCP_ALLOWED_HOSTS="mcp.example.com,mcp.example.com:*" \
-  -e STAAN_MCP_AUTH_ISSUER_URL="https://auth.example.com/" \
-  -e STAAN_MCP_AUTH_RESOURCE_URL="https://mcp.example.com/mcp" \
-  -e STAAN_MCP_AUTH_JWKS_URL="https://auth.example.com/.well-known/jwks.json" \
-  -e STAAN_MCP_AUTH_SCOPES="staan:use" \
-  staan-mcp
-```
-
-Put a TLS-terminating reverse proxy in front: the server itself speaks plain HTTP. Pass
-secrets with `--env-file`, Docker or Kubernetes secrets, not on the command line. The image has a
-`HEALTHCHECK` that checks the TCP port, which is only meaningful for the HTTP transports (use
-`--no-healthcheck` with stdio). It reads the port from `STAAN_MCP_PORT`, so change the port with
-`-e STAAN_MCP_PORT=9000` rather than `--port 9000`, or the container is reported unhealthy.
-
-The application code and its packages in the image are owned by root and read-only for the
-unprivileged `app` user (uid 10001), so a code-execution bug cannot rewrite them. The server
-needs no writable path, so you can lock the container down further:
-
-```bash
-docker run --rm --read-only --cap-drop=ALL --security-opt no-new-privileges \
-  --tmpfs /tmp -e STAAN_API_KEY \
-  staan-mcp --transport stdio
-```
 
 ## Security: OAuth gate and threat model
 
