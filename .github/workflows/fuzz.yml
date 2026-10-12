@@ -1,0 +1,54 @@
+name: Fuzz
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Weekly run; the per-change runs below are short smoke runs by design.
+    - cron: "23 5 * * 1"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: fuzz-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  UV_FROZEN: "1" # never re-resolve in CI; uv.lock is the source of truth
+  PYTHONUTF8: "1"
+
+# Jobs that run `uv sync --no-default-groups --group ...` set UV_NO_SYNC: otherwise every later
+# `uv run` would sync the default `dev` group again and install the whole toolchain.
+jobs:
+  fuzz:
+    name: Coverage-guided fuzzing smoke run
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    env:
+      UV_NO_SYNC: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.13.0"
+          python-version: "3.13"
+      - run: uv sync --no-default-groups --group test
+      # atheris is deliberately not a project dependency (it has no Windows wheels), so it is
+      # installed ad hoc here, pinned exactly like every other tool the jobs run.
+      - name: Install atheris (pinned)
+        run: uv pip install atheris==3.1.0
+      - name: Fuzz each target briefly
+        run: |
+          uv run --frozen python fuzz/fuzz_normalize_domain.py -runs=20000 -max_len=256
+          uv run --frozen python fuzz/fuzz_expand_markets.py -runs=20000 -max_len=256
+          uv run --frozen python fuzz/fuzz_error_from_response.py -runs=20000 -max_len=256
+          uv run --frozen python fuzz/fuzz_json_object.py -runs=20000 -max_len=256
+          uv run --frozen python fuzz/fuzz_citations_to_gfm.py -runs=20000 -max_len=256
+      - name: Run the fuzz harness unit tests with atheris present
+        run: uv run --frozen pytest tests/unit/test_fuzz_targets.py -q --no-cov -p no:randomly

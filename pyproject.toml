@@ -115,6 +115,9 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
+"fuzz/**" = [
+  "S101",     # asserts are the fuzz crash oracle: a failed invariant must abort the input
+]
 "tests/**" = [
   "S101",     # assert is how pytest tests assert
   "PLR2004",  # magic values are fine in expected results
@@ -143,6 +146,12 @@ plugins = ["pydantic.mypy"]
 warn_unreachable = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 
+# The fuzz targets import atheris only inside main(): it is not a project dependency (no Windows
+# wheels) and ships no stubs, so the strict check of fuzz/ (reached through tests/) cannot see it.
+[[tool.mypy.overrides]]
+module = "atheris"
+ignore_missing_imports = true
+
 [tool.pydantic-mypy]
 init_forbid_extra = true
 init_typed = true
@@ -157,8 +166,9 @@ fail-under = 10.0
 # (rpc_process, repo_files, ...). pytest finds them through `pythonpath` and the rootdir conftest;
 # pylint only learns of a directory that is itself a command-line argument, so `pylint src tests`
 # or a single test file reported E0401. `source-roots` cannot fix that: it adds only the one root
-# that contains each argument. Paths are relative to the working directory, as for every pylint path.
-init-hook = "import os, sys; sys.path[:0] = [os.path.abspath(d) for d in ('scripts', 'tests')]"
+# that contains each argument. The rootdir entry lets tests import the fuzz/ package the same way.
+# Paths are relative to the working directory, as for every pylint path.
+init-hook = "import os, sys; sys.path[:0] = [os.path.abspath(d) for d in ('scripts', 'tests', '.')]"
 
 [tool.pylint."messages control"]
 # Import ordering is owned by ruff.
@@ -191,8 +201,9 @@ exclude = "tests/*"
 minversion = "9.0"
 testpaths = ["tests"]
 # scripts/build_zipapp.py is imported by its tests; it is not part of the installed package. src/hermes
-# (the Hermes plugin) is not part of it either, so the tests import it from the source tree.
-pythonpath = ["scripts", "src"]
+# (the Hermes plugin) is not part of it either, so the tests import it from the source tree. The
+# rootdir entry makes the fuzz/ package importable so tests can drive the fuzz harnesses.
+pythonpath = ["scripts", "src", "."]
 log_level = "INFO"
 addopts = [
   "-ra",
