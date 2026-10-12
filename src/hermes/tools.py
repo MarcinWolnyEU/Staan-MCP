@@ -150,6 +150,33 @@ def _handler(tool: str) -> Callable[..., str]:
     return handle
 
 
+def _prune_null_branch(node: dict[str, Any]) -> dict[str, Any]:
+    """Drop the ``{"type": "null"}`` branch of an ``anyOf`` union and unwrap a lone survivor.
+
+    A ``default: null`` marked the pruned branch and goes as well; an argument's optionality
+    is in ``required``.
+    """
+    branches = node.get("anyOf")
+    if not isinstance(branches, list):
+        return node
+    kept = [branch for branch in branches if branch != {"type": "null"}]
+    node = {key: value for key, value in node.items() if key != "anyOf"}
+    if node.get("default") is None:
+        node.pop("default", None)
+    if len(kept) == 1:
+        return {**kept[0], **node}
+    node["anyOf"] = kept
+    return node
+
+
+def _keep_key(key: str, value: Any) -> bool:  # noqa: ANN401  (a JSON Schema value of any shape)
+    """Whether one key survives the copy: no ``$defs``, no ``title`` that is plain text.
+
+    A property that is itself called ``title`` stays; only a textual ``title`` is decoration.
+    """
+    return key != "$defs" and not (key == "title" and isinstance(value, str))
+
+
 def _provider_safe(
     node: Any,  # noqa: ANN401  (a JSON Schema node of any shape)
     defs: Mapping[str, Any],
@@ -168,20 +195,9 @@ def _provider_safe(
         return copy.deepcopy(node)
     if "$ref" in node:
         return _provider_safe(defs[node["$ref"].rsplit("/", 1)[-1]], defs)
-    branches = node.get("anyOf")
-    if isinstance(branches, list):
-        kept = [branch for branch in branches if branch != {"type": "null"}]
-        node = {key: value for key, value in node.items() if key != "anyOf"}
-        if node.get("default") is None:
-            node.pop("default", None)
-        if len(kept) == 1:
-            node = {**kept[0], **node}
-        else:
-            node["anyOf"] = kept
+    node = _prune_null_branch(node)
     return {
-        key: _provider_safe(value, defs)
-        for key, value in node.items()
-        if key != "$defs" and not (key == "title" and isinstance(value, str))
+        key: _provider_safe(value, defs) for key, value in node.items() if _keep_key(key, value)
     }
 
 

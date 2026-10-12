@@ -21,7 +21,7 @@ MCP comes with two tools:
 - `answer`: a grounded answer with citations, rendered as Markdown with GitHub-style footnotes.
 
 It runs over stdio (the default), streamable HTTP, or stateless streamable HTTP, and can protect the HTTP transports with an optional OAuth 2.1 resource-server gate. If you only need stdio, it can also run [with nothing installed](#three-ways-to-run-it), just download the zip of the repository and point your AI agent to this file (README.md).
- 
+
  > **Note:** `staan-mcp` is not affiliated with Staan, European Perspective, Qwant or Ecosia. It's just a solo project to deliver quality Python MCP that, at the time of release, did not exist.
 
 > **Important:** the `answer` API endpoint is invitation-only and even if your invitation was granted - it might be tempolarly disabled at any point in time, resulting in `{"message":"Forbidden","statusCode":403}` responses.
