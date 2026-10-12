@@ -665,6 +665,10 @@ uv build && uv run --frozen --only-group dist twine check --strict dist/* && uv 
 uv run python scripts/build_zipapp.py         # builds dist-bundle/staan-mcp-stdio.pyz; tests/repo run it
 ```
 
+Project was built using [OMP](https://github.com/can1357/oh-my-pi) (Opus 5.5, Sonnet 5.5, Mimo V2.6 Pro),
+[VSC](https://github.com/microsoft/vscode), [git](https://git-scm.com/) and dependencies you'll find in
+[pyproject.toml](https://github.com/MarcinWolnyEU/Staan-MCP/blob/main/pyproject.toml).
+
 - Mutation testing uses [mutmut](https://github.com/boxed/mutmut) and needs Linux, macOS or
   WSL (it does not run on native Windows; use Docker there).
   `uv run mutmut run`, then `uv run mutmut export-cicd-stats`. CI gates on
@@ -681,6 +685,22 @@ uv run python scripts/build_zipapp.py         # builds dist-bundle/staan-mcp-std
 - Research notes on the Staan API, the MCP SDK and OAuth are in
   [`docs/research/`](https://github.com/MarcinWolnyEU/Staan-MCP/tree/main/docs/research). See the
   [changelog](https://github.com/MarcinWolnyEU/Staan-MCP/blob/main/CHANGELOG.md) for what changed.
+
+## Contributing
+
+Create a [PR](https://github.com/MarcinWolnyEU/Staan-MCP/pulls), make sure pipelines pass green
+( which, among others, means that the code coverage is at 100%, lint and type check passes, project
+retains the current compatibility, etc. etc.), describe **why** changes were implemented,
+what are the **risks** associated with the change. Your PR will be reviewed by me personally.
+
+All pull requests are responded to within 2 weeks.
+
+## Providing feedback and bug reports
+
+Report it via [Issues](https://github.com/MarcinWolnyEU/Staan-MCP/issues) tab. For security
+issues use [dedicated form](https://github.com/MarcinWolnyEU/Staan-MCP/security/advisories/new).
+
+All issues are responded to within 2 weeks, security advisories within 48 hours.
 
 ## License
 
