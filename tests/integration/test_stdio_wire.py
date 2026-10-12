@@ -319,7 +319,7 @@ DIFFERENT_AFTER_HANDSHAKE = [
     Wire("an unfinished object", b"{", NO_ANSWER, [PARSE_ERROR]),
     Wire("bytes that are not UTF-8", b"\xff\xfe", NO_ANSWER, [PARSE_ERROR]),
     Wire("a byte order mark", b"\xef\xbb\xbf" + method_call("ping"), NO_ANSWER, [PARSE_ERROR]),
-    Wire("nesting beyond the parser", b"[" * 100_000 + b"]" * 100_000, NO_ANSWER, [PARSE_ERROR]),
+    Wire("nesting beyond the parser", b"[" * 100_000, NO_ANSWER, [PARSE_ERROR]),
     Wire("an empty batch", b"[]", NO_ANSWER, [BATCH]),
     Wire(
         "a batch of one request",

@@ -71,7 +71,7 @@ _limiters: dict[Settings, RateLimiter] = {}
 _limiters_lock = threading.Lock()
 
 
-class PluginContext(Protocol):
+class PluginContext(Protocol):  # pylint: disable=too-few-public-methods
     """The part of Hermes' ``PluginContext`` this plugin uses."""
 
     def register_tool(  # noqa: PLR0913  (Hermes' signature)

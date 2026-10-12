@@ -12,7 +12,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Dependency updates: uv to 0.13.0, uv_build to 0.13.0, ruff-pre-commit to 0.16.10,
-  commitizen to 4.19.1, typos to 5.0.7.
+  commitizen to 4.19.1, typos to 5.0.7. The `mcp` floor is now `>=2.3` (2.2.0 differs from 2.3.0
+  in the `initialize` response and broke the parity checks).
 
 ## [1.0.0] - 2026-10-11
 

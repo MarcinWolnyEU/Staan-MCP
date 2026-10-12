@@ -21,7 +21,6 @@ concurrency:
 
 env:
   UV_FROZEN: "1" # never re-resolve in CI; uv.lock is the source of truth
-  FORCE_COLOR: "1"
   PYTHONUTF8: "1"
 
 # Jobs that run `uv sync --no-default-groups --group ...` set UV_NO_SYNC: otherwise every later

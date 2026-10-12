@@ -2698,7 +2698,7 @@ test = [
 requires-dist = [
     { name = "anyio" },
     { name = "httpx2" },
-    { name = "mcp", specifier = ">=2.2,<3" },
+    { name = "mcp", specifier = ">=2.3,<3" },
     { name = "pydantic", specifier = ">=2" },
     { name = "pyjwt", extras = ["crypto"], marker = "extra == 'oauth'", specifier = ">=2.14" },
 ]

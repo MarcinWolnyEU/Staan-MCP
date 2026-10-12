@@ -17,6 +17,6 @@ _SRC = Path(__file__).resolve().parent.parent
 if (_SRC / "staan_mcp").is_dir() and str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
-from .tools import register  # noqa: E402
+from .tools import register  # noqa: E402  # pylint: disable=wrong-import-position
 
 __all__ = ["register"]
