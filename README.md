@@ -152,6 +152,8 @@ expands `${env:NAME}`, so the key can stay in your shell environment:
 }
 ```
 
+The repository is also a Cursor plugin ([`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) and [`mcp.json`](mcp.json)). When installed as one, Cursor asks for the Staan API key as a plugin variable instead of reading it from your shell.
+
 ### Hermes Agent
 
 Hermes reads MCP servers from `mcp_servers` in `~/.hermes/config.yaml`:

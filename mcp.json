@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "staan": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["src/staan_mcp/stdio_server.py"],
+      "cwd": "./",
+      "env": { "STAAN_API_KEY": "${STAAN_API_KEY}" }
+    },
+    "staan-http": {
+      "type": "streamable-http",
+      "url": "http://127.0.0.1:8000/mcp"
+    }
+  }
+}

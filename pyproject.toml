@@ -6,7 +6,7 @@ build-backend = "uv_build"
 [project]
 name = "staan-mcp"
 version = "1.0.1"
-description = "MCP server for the Staan API: web search and grounded answers over stdio or streamable HTTP."
+description = "MCP for web search with European search index, Staan, independent of Google, Bing and American, Chinese or Russian search indexes."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
@@ -14,9 +14,10 @@ authors = [{ name = "Marcin Wolny" }]
 requires-python = ">=3.11"
 keywords = ["mcp", "model-context-protocol", "staan", "search", "web-search", "answer", "llm", "ai"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Framework :: AsyncIO",
   "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",

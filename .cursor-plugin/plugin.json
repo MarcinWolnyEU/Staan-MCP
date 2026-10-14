@@ -1,0 +1,22 @@
+{
+  "name": "staan-mcp",
+  "description": "Web search from a European search index Staan, independent of Google, Bing, and other American, Chinese, or Russian search engines.",
+  "author": { "name": "Marcin Wolny" },
+  "homepage": "https://github.com/MarcinWolnyEU/Staan-MCP#readme",
+  "repository": "https://github.com/MarcinWolnyEU/Staan-MCP",
+  "license": "MIT",
+  "keywords": ["search", "web-search", "research", "staan", "search-engine", "serp", "content-extraction",  "europe", "eu", "european"],
+  "logo": "icon_white.png",
+  "mcpServers": "mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "STAAN_API_KEY": {
+        "type": "string",
+        "title": "Staan API key",
+        "description": "Staan API key, created in the Staan console (https://staan.ai/console/keys). The free plan includes 1,000 requests per month."
+      }
+    },
+    "required": ["STAAN_API_KEY"]
+  }
+}
