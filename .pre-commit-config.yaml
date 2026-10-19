@@ -59,7 +59,7 @@ repos:
     hooks:
       - id: actionlint
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: b2eb0cb7a4efa0e5d85f70d76379cda1194fa72b # frozen: v4.19.1
+    rev: 57217c394fff5064bedd48421fe4b6f5f73aad47 # frozen: v4.19.2
     hooks:
       - id: commitizen
         stages: [commit-msg]
