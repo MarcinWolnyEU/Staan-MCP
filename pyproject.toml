@@ -40,7 +40,7 @@ dependencies = [
 # OAuth 2.1 resource-server gate for the HTTP transports (JWT verification via JWKS).
 # 2.14 added the PyJWKClient cooldown: older versions refetch the JWKS for every token that
 # carries an unknown kid, which lets anonymous callers hammer the identity provider.
-oauth = ["pyjwt[crypto]>=2.14"]
+oauth = ["pyjwt[crypto]>=2.15.1"]
 
 [project.urls]
 Homepage = "https://github.com/MarcinWolnyEU/Staan-MCP"
@@ -61,7 +61,7 @@ test = [
   # tests/repo parses the workflow, Dependabot and pre-commit YAML files.
   "pyyaml>=6.0.2",
   # Needed so the optional OAuth verifier tests run.
-  "pyjwt[crypto]>=2.14",
+  "pyjwt[crypto]>=2.15.1",
   # tests/repo runs `cz bump` in a scratch copy to prove it rewrites the standalone version.
   "commitizen>=4.19,<5",
 ]
