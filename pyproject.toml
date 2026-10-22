@@ -32,7 +32,7 @@ classifiers = [
 dependencies = [
   "mcp>=2.3,<3",
   "httpx2",
-  "pydantic>=2",
+  "pydantic>=2.14.1",
   "anyio",
 ]
 
@@ -56,19 +56,19 @@ test = [
   "pytest>=9.1,<10",
   "pytest-cov>=7.1,<8",
   "pytest-randomly>=5",
-  "hypothesis>=6.168",
-  "inline-snapshot>=0.35",
+  "hypothesis>=6.169.0",
+  "inline-snapshot>=0.36.1",
   # tests/repo parses the workflow, Dependabot and pre-commit YAML files.
   "pyyaml>=6.0.2",
   # Needed so the optional OAuth verifier tests run.
   "pyjwt[crypto]>=2.15.1",
   # tests/repo runs `cz bump` in a scratch copy to prove it rewrites the standalone version.
-  "commitizen>=4.19,<5",
+  "commitizen>=4.19.2,<5",
 ]
 lint = [
-  "ruff>=0.16.9,<0.17",
+  "ruff>=0.17.0,<0.18",
   "mypy>=2.3,<3",
-  "pylint>=4.1,<5",
+  "pylint>=4.1.3,<5",
   "radon>=6.0.1,<7",
   "xenon>=0.9.3,<1",
   "types-pyyaml>=6.0.12",
@@ -83,7 +83,7 @@ dist = [
 # Vulnerability audit of the exported lock (security.yml). Kept out of `dev`: CI installs it alone.
 audit = ["pip-audit>=2.10,<3"]
 release = [
-  "commitizen>=4.19,<5",
+  "commitizen>=4.19.2,<5",
   "prek>=0.5",
   { include-group = "dist" },
 ]

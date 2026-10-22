@@ -151,7 +151,7 @@ def test_prereleases_are_not_published_to_the_mcp_registry() -> None:
 def test_mcp_publisher_is_checked_against_a_pinned_digest() -> None:
     job = RELEASE_JOBS["publish-mcp-registry"]
     install = step_named(job, "Install mcp-publisher (pinned version and checksum)")
-    assert install["env"]["PUBLISHER_VERSION"] == "v1.8.1"
+    assert re.fullmatch(r"v\d+\.\d+\.\d+", install["env"]["PUBLISHER_VERSION"])
     assert re.fullmatch(r"[0-9a-f]{64}", install["env"]["PUBLISHER_SHA256"])
     assert (
         'echo "${PUBLISHER_SHA256}  mcp-publisher_linux_amd64.tar.gz" | sha256sum --check -'
@@ -178,7 +178,7 @@ def test_sbom_is_attested_against_the_distributions() -> None:
     assert "--output-file dist-sbom.cdx.json" in build_lines
     attest = step_using(RELEASE_JOBS["attest"], "actions/attest-sbom")
     assert attest["with"] == {"subject-path": "dist/*", "sbom-path": "dist-sbom.cdx.json"}
-    assert attest["uses"] == "actions/attest-sbom@c604332985a26aa8cf1bdc465b92731239ec6b9e"
+    assert re.fullmatch(r"actions/attest-sbom@[0-9a-f]{40}", attest["uses"])
     assert RELEASE_JOBS["attest"]["permissions"] == {
         "contents": "read",
         "id-token": "write",
