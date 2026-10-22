@@ -1,6 +1,6 @@
 [build-system]
 # Pinned exactly: the build runs in the privileged release job, so it must not float.
-requires = ["uv_build==0.13.0"]
+requires = ["uv_build==0.13.1"]
 build-backend = "uv_build"
 
 [project]
