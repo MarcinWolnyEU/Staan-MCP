@@ -40,7 +40,7 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
-          version: "0.13.0"
+          version: "0.13.1"
           python-version: "3.13"
       - run: uv sync --no-default-groups --group lint --group test
       - run: uv lock --check
@@ -76,7 +76,7 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
-          version: "0.13.0"
+          version: "0.13.1"
           python-version: ${{ matrix.python-version }}
       - run: uv sync --no-default-groups --group test
       # pyproject.toml sets fail_under = 100 with branch coverage, so every cell must be complete.
@@ -124,7 +124,7 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
-          version: "0.13.0"
+          version: "0.13.1"
           python-version: "3.11"
       - run: >-
           uv run --isolated --no-editable --no-default-groups --group test
@@ -146,7 +146,7 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
-          version: "0.13.0"
+          version: "0.13.1"
           python-version: "3.13"
       - name: Check pyproject.toml and server.json versions agree
         run: |
@@ -176,7 +176,7 @@ jobs:
           persist-credentials: false
       - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
-          version: "0.13.0"
+          version: "0.13.1"
           python-version: "3.13"
       - run: uv build --no-sources
       - run: uv run --only-group dist twine check --strict dist/*
