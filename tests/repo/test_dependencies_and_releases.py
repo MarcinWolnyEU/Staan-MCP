@@ -54,10 +54,12 @@ def test_dependabot_regex_rejects_an_interpolated_tag() -> None:
 
 def test_runtime_image_uses_a_supported_debian_and_read_only_packages() -> None:
     lines = _from_lines()
-    assert [line.split("@", 1)[0] for line in lines] == [
+    # Dependabot bumps the Python minor on its own, so only the Debian flavour is pinned here.
+    tags = [re.sub(r"python:3\.\d+-", "python:3.x-", line.split("@", 1)[0]) for line in lines]
+    assert tags == [
         "FROM ghcr.io/astral-sh/uv:0.13.0",
-        "FROM python:3.13-slim-trixie",
-        "FROM python:3.13-slim-trixie",
+        "FROM python:3.x-slim-trixie",
+        "FROM python:3.x-slim-trixie",
     ]
     dockerfile = read_text("Dockerfile")
     assert "COPY --from=builder /app/.venv /app/.venv\n" in dockerfile
