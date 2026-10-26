@@ -9,6 +9,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Dependabot version updates run monthly instead of weekly.
+
 ### Fixed
 
 - Mutation-testing workflow failed before any mutant ran due to wrong configuration.
