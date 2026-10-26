@@ -96,6 +96,12 @@ dev = [
 
 [tool.uv]
 default-groups = ["dev"]
+# opentelemetry-api is a transitive dependency of `mcp`, which allows any `>=1.28.0` and has no
+# release that raises that floor. CVE-2026-114603 is fixed in 1.45.1, so pin the floor here:
+# this is the only way to overwrite a transitive version until the MCP SDK ships its own floor.
+# The constraint governs this project's resolution (uv.lock, the zipapp and Docker image builds);
+# it is not published in the package metadata.
+constraint-dependencies = ["opentelemetry-api>=1.45.1"]
 
 # --------------------------------------------------------------------------------------
 # Ruff: every rule on, with a short list of documented opt-outs.
