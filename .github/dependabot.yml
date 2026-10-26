@@ -6,10 +6,14 @@ version: 2
 # image digests and the pre-commit hook SHAs (pre-commit.ci is not used; its autoupdate would
 # replace the SHA pins with tags). Pins it cannot see (for example the build backend and tool
 # versions pinned in workflows) are updated by hand.
+#
+# The cadence is monthly: this schedules version updates only (security updates are driven by
+# alerts and ignore it), and weekly runs produced PRs faster than they were reviewed. Dependabot
+# has no bi-weekly interval (daily/weekly/monthly/quarterly/semiannually/yearly/cron only).
 updates:
   - package-ecosystem: uv
     directory: /
-    schedule: { interval: weekly, day: monday }
+    schedule: { interval: monthly }
     cooldown: { default-days: 7 }
     commit-message: { prefix: build, include: scope }
     groups:
@@ -18,7 +22,7 @@ updates:
         update-types: [minor, patch]
   - package-ecosystem: github-actions
     directory: /
-    schedule: { interval: weekly, day: monday }
+    schedule: { interval: monthly }
     cooldown: { default-days: 7 }
     commit-message: { prefix: ci, include: scope }
     groups:
@@ -26,11 +30,11 @@ updates:
         patterns: ["*"]
   - package-ecosystem: docker
     directory: /
-    schedule: { interval: weekly, day: monday }
+    schedule: { interval: monthly }
     cooldown: { default-days: 7 }
     commit-message: { prefix: build, include: scope }
   - package-ecosystem: pre-commit
     directory: /
-    schedule: { interval: weekly, day: monday }
+    schedule: { interval: monthly }
     cooldown: { default-days: 7 }
     commit-message: { prefix: ci, include: scope }
