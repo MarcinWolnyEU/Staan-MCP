@@ -1,6 +1,6 @@
 [build-system]
 # Pinned exactly: the build runs in the privileged release job, so it must not float.
-requires = ["uv_build==0.13.1"]
+requires = ["uv_build==0.13.6"]
 build-backend = "uv_build"
 
 [project]
@@ -87,7 +87,7 @@ release = [
   "prek>=0.5.6",
   { include-group = "dist" },
 ]
-uv-version = ["uv==0.13.1"]
+uv-version = ["uv==0.13.6"]
 dev = [
   { include-group = "test" },
   { include-group = "lint" },

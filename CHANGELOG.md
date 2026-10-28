@@ -9,15 +9,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Dependabot version updates run monthly instead of weekly.
+
 ### Fixed
 
 - CI configuration
 
 ### Security
 
-- `opentelemetry-api` 1.45.0 raised to 1.45.1 (CVE-2026-114603). The MCP SDK (`mcp`) allows any
-  `opentelemetry-api>=1.28.0` and has no release with a higher floor, so the fixed version is
-  enforced with a `[tool.uv]` constraint until it does.
+- `opentelemetry-api` 1.45.0 raised to 1.45.1 (CVE-2026-114603) and uv_build 0.13.1 raised to 0.13.6 (GHSA-hq85-5cpj-mr62)
 - Updated several other dependencies
 
 ## [1.0.1] - 2026-10-12
