@@ -54,8 +54,8 @@ def test_dependabot_regex_rejects_an_interpolated_tag() -> None:
 
 def test_runtime_image_uses_a_supported_debian_and_read_only_packages() -> None:
     lines = _from_lines()
-    # Dependabot bumps the minor and patch versions on its own (test_workflow_hygiene ties the uv
-    # tag to uv_build), so only the major versions, the images and the Debian flavour are pinned.
+    # Dependabot bumps the minor and patch versions on its own, so only the major versions, the
+    # images and the Debian flavour are pinned.
     tags = [re.sub(r":(\d+)(\.\d+)+", r":\1.X", line.split("@", 1)[0]) for line in lines]
     assert tags == [
         "FROM ghcr.io/astral-sh/uv:0.X",

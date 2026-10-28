@@ -20,12 +20,18 @@ from repo_files import (
     workflow,
 )
 
-UV_VERSION_PIN = re.compile(r"^uv_build==(?P<version>\d+\.\d+\.\d+)$")
+UV_GROUP_PIN = re.compile(r"^uv==(?P<version>\d+\.\d+\.\d+)$")
+UV_BUILD_PIN = re.compile(r"^uv_build==(?P<version>\d+\.\d+\.\d+)$")
+# A requirement on the `uv` package itself (`uv`, `uv==1`, `uv[x]`), not `uvicorn` or `uv-build`.
+UV_REQUIREMENT = re.compile(r"^uv(?![\w.-])", re.IGNORECASE)
 JOB_IDS = [f"{name}:{job_id}" for name, job_id, _ in all_jobs()]
 
 
 def _uv_version() -> str:
-    match = UV_VERSION_PIN.match(pyproject()["build-system"]["requires"][0])
+    """The version Dependabot bumps and setup-uv reads: the `uv-version` dependency group."""
+    pins = pyproject()["dependency-groups"]["uv-version"]
+    assert len(pins) == 1
+    match = UV_GROUP_PIN.match(pins[0])
     assert match is not None
     return match.group("version")
 
@@ -77,26 +83,69 @@ def test_no_workflow_runs_an_unpinned_python_tool() -> None:
         assert all(line.startswith("uv run --only-group ") for line in users), users
 
 
-def test_every_setup_uv_step_pins_the_project_uv_version() -> None:
-    expected = _uv_version()
+def test_every_setup_uv_step_reads_the_uv_version_from_pyproject() -> None:
     count = 0
     for _, _, job in all_jobs():
         for step in steps(job):
             if step.get("uses", "").startswith("astral-sh/setup-uv@"):
                 count += 1
-                assert step["with"]["version"] == expected, step
+                # An explicit file makes a missing pin an error; without one setup-uv falls back
+                # to the latest uv.
+                assert step["with"]["version-file"] == "pyproject.toml", step
+                assert "version" not in step["with"], step
     assert count >= 8
 
 
-def test_uv_version_is_the_same_everywhere() -> None:
-    expected = _uv_version()
-    hooks = read_text(".pre-commit-config.yaml")
-    assert re.search(
-        rf"repo: https://github\.com/astral-sh/uv-pre-commit\n\s+rev: [0-9a-f]{{40}} "
-        rf"# frozen: {re.escape(expected)}\n",
-        hooks,
+def test_setup_uv_finds_exactly_one_uv_pin_in_pyproject() -> None:
+    config = pyproject()
+    # `required-version` would take precedence over the pin that Dependabot bumps.
+    assert "required-version" not in config["tool"]["uv"]
+    extras = config["project"].get("optional-dependencies", {}).values()
+    groups = config["dependency-groups"].values()
+    requirements = [
+        *config["project"].get("dependencies", []),
+        *(r for extra in extras for r in extra),
+        *(r for group in groups for r in group if isinstance(r, str)),
+    ]
+    # setup-uv takes the first match, and Dependabot mishandles a package listed twice.
+    assert [r for r in requirements if UV_REQUIREMENT.match(r)] == [f"uv=={_uv_version()}"]
+
+
+def test_the_uv_version_group_is_never_synced() -> None:
+    config = pyproject()
+    entries = [r for group in config["dependency-groups"].values() for r in group]
+    included = {r["include-group"] for r in entries if isinstance(r, dict)}
+    # A synced copy would put a second uv in the environment, shadowing the one setup-uv installs.
+    assert "uv-version" not in included
+    assert config["tool"]["uv"]["default-groups"] == ["dev"]
+    assert "uv-version" not in config["tool"]["uv"]["default-groups"]
+
+
+def test_every_uv_pin_is_exact_and_they_share_a_major_version() -> None:
+    # Dependabot bumps each pin through its own ecosystem and they may differ for a while (the
+    # build backend is fetched in isolation, so it need not match the uv that runs it), so the
+    # minor and patch versions are not compared.
+    build = UV_BUILD_PIN.match(pyproject()["build-system"]["requires"][0])
+    hook = re.search(
+        r"repo: https://github\.com/astral-sh/uv-pre-commit\n\s+rev: [0-9a-f]{40} "
+        r"# frozen: (\d+\.\d+\.\d+)\n",
+        read_text(".pre-commit-config.yaml"),
     )
-    assert f"FROM ghcr.io/astral-sh/uv:{expected}@sha256:" in read_text("Dockerfile")
+    image = re.search(
+        r"^FROM ghcr\.io/astral-sh/uv:(\d+\.\d+\.\d+)@sha256:[0-9a-f]{64} ",
+        read_text("Dockerfile"),
+        re.MULTILINE,
+    )
+    assert build is not None
+    assert hook is not None
+    assert image is not None
+    versions = {
+        "uv-version group": _uv_version(),
+        "uv_build": build.group("version"),
+        "uv-pre-commit": hook.group(1),
+        "Dockerfile": image.group(1),
+    }
+    assert len({version.split(".")[0] for version in versions.values()}) == 1, versions
 
 
 def test_ci_gate_waits_for_every_required_job() -> None:

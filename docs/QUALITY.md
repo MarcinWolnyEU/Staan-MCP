@@ -114,7 +114,7 @@ Notes:
 
 ## Mutation testing (mutmut)
 
-mutmut needs `fork()`, so it does not run on native Windows. CI runs it on Linux every week
+mutmut needs `fork()`, so it does not run on native Windows. CI runs it on Linux every month
 (`.github/workflows/mutation.yml`). Locally on Windows, use Docker (or WSL, where plain
 `uv run mutmut run` works). `src/staan_mcp/stdio_server.py` is the one module that mutmut skips
 (`do_not_mutate` in `pyproject.toml`): its threads, sockets and timeouts make mutation runs slow

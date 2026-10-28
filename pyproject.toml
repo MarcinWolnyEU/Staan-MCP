@@ -87,6 +87,7 @@ release = [
   "prek>=0.5.6",
   { include-group = "dist" },
 ]
+uv-version = ["uv==0.13.1"]
 dev = [
   { include-group = "test" },
   { include-group = "lint" },
