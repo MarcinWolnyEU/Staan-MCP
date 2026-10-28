@@ -4,8 +4,14 @@ version: 2
 #
 # Dependabot owns every pinned revision it can parse: uv.lock, action SHAs, the Dockerfile base
 # image digests and the pre-commit hook SHAs (pre-commit.ci is not used; its autoupdate would
-# replace the SHA pins with tags). Pins it cannot see (for example the build backend and tool
-# versions pinned in workflows) are updated by hand.
+# replace the SHA pins with tags).
+#
+# The uv version is pinned in four places, each bumped by its own ecosystem: the `uv-version`
+# dependency group (every workflow reads it through setup-uv), the `uv_build` requirement (both uv),
+# the Dockerfile tag (docker) and the uv-pre-commit rev (pre-commit). They are deliberately not
+# required to be equal: a bump of one never fails CI (tests/repo only checks each pin's form and
+# that they share a major version). The build backend is fetched in isolation, so it need not match
+# the uv that runs it.
 #
 # The cadence is monthly: this schedules version updates only (security updates are driven by
 # alerts and ignore it), and weekly runs produced PRs faster than they were reviewed. Dependabot

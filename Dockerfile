@@ -12,8 +12,8 @@
 #
 # Base images: literal `name:tag@sha256:<index digest>` on every FROM line. Dependabot (docker
 # ecosystem) only recognises that form; a tag built from an ARG (`uv:${UV_VERSION}`) makes it skip
-# the line, so do not reintroduce ARGs here. The uv tag matches the uv pinned in the workflows and
-# the `uv_build` build requirement (tests/repo checks this). Both images ship amd64 and arm64.
+# the line, so do not reintroduce ARGs here. The uv tag is bumped by Dependabot independently of
+# the `uv-version` dependency group in pyproject.toml (tests/repo only checks the major version). Both images ship amd64 and arm64.
 FROM ghcr.io/astral-sh/uv:0.13.1@sha256:4a1f3666816dafadd20ceb71eac9a7d56d7ef30279f7d64048519ab901ada336 AS uv
 
 FROM python:3.14-slim-trixie@sha256:a2b82f3c48559aa0a8446d9af49826b6e2b2016f4cd2afabfe6013ec53729170 AS builder

@@ -46,7 +46,7 @@ Facts established by research (do not re-litigate):
 
 ## 2. Tooling and conventions
 
-- Python `>=3.11`. CI tests 3.11, 3.12, 3.13 and 3.14 on ubuntu, windows and macos.
+- Python `>=3.11`. CI tests the lowest (3.11) and the latest (3.14) version on ubuntu, windows and macos.
 - Use uv for everything. The build backend is `uv_build`, with a `src/` layout and `py.typed`.
   Dev tools go in PEP 735 `[dependency-groups]`.
 - Runtime deps: `mcp>=2.2,<3`, `httpx2` (the SDK's HTTP client; respx does NOT work with it, so
